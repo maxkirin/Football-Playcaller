@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+The html title
+-->
+<head>
+    <title>Football Play Calling</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="CTE" />
+	<link rel="stylesheet" type="text/css" href="cte.css">
+	<link rel="icon" href="book.jpg" >
+	
+
+
+</head>
+<!--
+The div to be able to place our contents with respect to the CSS code
+-->
+
+<div class='wrapper1'>
+<body>
+
+  <h1>WELCOME To Football Play Calling System </h1>
+  <br/>
+  
+                <!-- 
+	The signup-submit.php
+	  -writes the account information to the database as a new user
+	  -displays a welcome page
+	  -provides a link that takes the user to the home page 
+-->
+
+<form method="POST" action="enterScoresResponse.php">
+
+  <fieldset>
+    
+	<p id='bookinfo'> ***Please fill in all information. Thank you!! ***<p>
+	
+    <span><label for="teamTitle"><strong>Team Title: </strong></label></span>
+    <input type="text" name="teamTitle" id="teamTitle" size="25" />
+    <br/>
+    <br/>
+	<label for="fieldPosition"><strong>Field Position: </strong></label>
+    <input type="text" name="fieldPosition" id="fieldPosition" size="25" />
+	<br/>
+    <br/>
+	<label for="scoreDifferential"><strong>Score Differential: </strong></label>
+    <input type="text" name="scoreDifferential" id="scoreDifferential" size="25" /></span>
+    <br/>
+    <br/>
+	
+	<form>
+	 
+	 <fieldset>
+                    <legend><strong>Down</Strong></legend>
+                    <label>
+                        <input type="radio" name="num" value="1" /><strong> 1</strong></label>
+                    <br/>
+                    <label>
+                        <input type="radio" name="num" value="2" /><strong>2</strong></label>
+                    <br/>
+					<label>
+                        <input type="radio" name="num" value="3" /><strong>3</strong></label>
+                    <br/>
+                    <label>
+                        <input type="radio" name="num" value="4" checked="checked" />
+						<strong>4</strong></label>
+                    <br/>
+                </fieldset>
+                <br/>
+				
+		</form>
+		<form>
+		<fieldset>
+                    <legend><strong>Distance</Strong></legend>
+                    <label>
+                        <input type="radio" name="num" value="Short" /><strong>Short</strong></label>
+                    <br/>
+                    <label>
+                        <input type="radio" name="num" value="Medium" /><strong>Medium</strong></label>
+                    <br/>
+					<label>
+                        <input type="radio" name="num" value="Long" /><strong>Long</strong></label>
+                    <br/>
+                    <label>
+                        <input type="radio" name="num" value="extraLong" checked="checked" />
+						<strong>Extra Long</strong></label>
+                    <br/>
+                </fieldset>
+                <br/>
+		</form>
+		<label for="quarterNumber"><strong>Quarter Number: </strong></label>
+    <input type="radiogroup" name="classCode" id="Quarter Number" size="10" />
+	
+	
+	<br/>
+    <br/>
+	<label for="timeRemaining"><strong> Time Remaining: </strong></label>
+   	 <input type="text" name="timeRemaining" id="timeRemaining" size="10" />
+	<br/>
+	<br/>
+	 <label for="timeOuts"><strong>Time Outs: </strong></label>
+    <input type="text" name="timeOuts" id="timeOuts" size="10" />
+	
+	<br/>
+	</span>
+	
+    
+
+<br/>
+    <br/>
+    <input type="submit" name="confirm" id="confirm" value="Confirm" />
+	</form>
+	<br/>
+	<form action="profile.php">     
+		<input type="submit" name="home" id="home" value="Back to Home">
+	</form>
+	<br/>
+  </fieldset>
+
+</div>
+ </body>
+</html>
