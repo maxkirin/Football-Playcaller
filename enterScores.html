@@ -17,13 +17,23 @@ The html title
 <!--
 The div to be able to place our contents with respect to the CSS code
 -->
-
-<div class='wrapper1'>
 <body>
-
-  <h1>WELCOME To Football Play Calling System </h1>
-  <br/>
+<div class = "section">
+		<h3> Welcome to FootBall Play Calling</h3>
+		
+		<div class="video-container">
+			<div class="color-overlay"></div>
+			<video autoplay loop muted>
+				<source src="ShortFieldVideo.mp4" type = "video/mp4">
+			</video>
+		</div>
+	</div>
+	
+	
+<div class='wrapper1'>
+  <h1>~~Play and Score Simulation~~</h1>
   
+  <br>
                 <!-- 
 	The signup-submit.php
 	  -writes the account information to the database as a new user
@@ -31,12 +41,11 @@ The div to be able to place our contents with respect to the CSS code
 	  -provides a link that takes the user to the home page 
 -->
 
-<form method="POST" action="enterScoresResponse.php">
+<form method="POST" action="enterScores.html">
 
-  <fieldset>
     
-	<p id='bookinfo'> ***Please fill in all information. Thank you!! ***<p>
-	
+	<div class="container1">
+	<p id='bookinfo'> ***Please fill in all information. Thank you!! ***</p>
     <span><label for="teamTitle"><strong>Team Title: </strong></label></span>
     <input type="text" name="teamTitle" id="teamTitle" size="25" />
     <br/>
@@ -47,49 +56,33 @@ The div to be able to place our contents with respect to the CSS code
     <br/>
 	<label for="scoreDifferential"><strong>Score Differential: </strong></label>
     <input type="text" name="scoreDifferential" id="scoreDifferential" size="25" /></span>
-    <br/>
-    <br/>
-	
-	<form>
+    
+    
 	 
-	 <fieldset>
-                    <legend><strong>Down</Strong></legend>
-                    <label>
-                        <input type="radio" name="num" value="1" /><strong> 1</strong></label>
-                    <br/>
-                    <label>
-                        <input type="radio" name="num" value="2" /><strong>2</strong></label>
-                    <br/>
-					<label>
-                        <input type="radio" name="num" value="3" /><strong>3</strong></label>
-                    <br/>
-                    <label>
-                        <input type="radio" name="num" value="4" checked="checked" />
-						<strong>4</strong></label>
-                    <br/>
-                </fieldset>
-                <br/>
-				
-		</form>
-		<form>
-		<fieldset>
-                    <legend><strong>Distance</Strong></legend>
-                    <label>
-                        <input type="radio" name="num" value="Short" /><strong>Short</strong></label>
-                    <br/>
-                    <label>
-                        <input type="radio" name="num" value="Medium" /><strong>Medium</strong></label>
-                    <br/>
-					<label>
-                        <input type="radio" name="num" value="Long" /><strong>Long</strong></label>
-                    <br/>
-                    <label>
-                        <input type="radio" name="num" value="extraLong" checked="checked" />
-						<strong>Extra Long</strong></label>
-                    <br/>
-                </fieldset>
-                <br/>
-		</form>
+	<br><br>		
+		<label for="down"><strong>Down: </strong></label>
+		<select name="down" id="down">
+	
+		<option value="Blank" checked="checked">Choose...</option>
+		<option value = "one">1</option>
+		<option value="two">2</option>
+		<option value="three">3</option>
+		<option value="four">4 </option>
+		</select>
+		
+		<br><br>
+		<label for="Distance"><strong> Distance: </strong></label>
+		<select name="Distance" id="distance">
+	
+		<option value="Blank" checked="checked">Choose...</option>
+		<option value = "short">Short</option>
+		<option value="medium">Medium</option>
+		<option value="long">Long</option>
+		<option value="extra_long"> Extra Long </option>
+		</select>
+		
+		<br><br>
+			
 		<label for="quarterNumber"><strong>Quarter Number: </strong></label>
     <input type="radiogroup" name="classCode" id="Quarter Number" size="10" />
 	
@@ -103,22 +96,70 @@ The div to be able to place our contents with respect to the CSS code
 	 <label for="timeOuts"><strong>Time Outs: </strong></label>
     <input type="text" name="timeOuts" id="timeOuts" size="10" />
 	
-	<br/>
-	</span>
+	<br/></br>
+	<div class="hitsubmit">
+	<input type="submit" name="confirm" id="confirm" value="Confirm"/>
+	<br>
+	</div>
+	</br>
+	</br>
+	</div>
+
 	
-    
+	<div class="container2">
+    <h5 id="results"> RESULTS</h5>
+	<fieldset>
+  <legend><strong>Run</strong></legend>
+  <label for="averageYards">Average Yards:</label>
+  <input type="number" id="averageYards" name="averageYards" hidden><br>
+  <label for="numbers">Numbers:</label>
+  <input type="number" id="numbers" name="numbers" hidden><br>
+  <label for="conversions">Conversions:</label>
+  <input type="number" id="conversions" name="conversions" hidden><br>
+ </fieldset>
+ 
+  <fieldset>
+  <legend><strong>Pass</strong></legend>
+  <label for="averageYards">Average Yards:</label>
+  <input type="number" id="averageYards" name="averageYards" hidden><br>
+  <label for="numbers">Numbers:</label>
+  <input type="number" id="numbers" name="numbers" hidden><br>
+  <label for="conversions">Conversions:</label>
+  <input type="number" id="conversions" name="conversions"hidden><br>
+  <label for="percentage">Percentage:</label>
+  <input type="number" id="percentage" name="percentage"hidden>
+ </fieldset>
+ <span>
+ <table>
+  <tr>
+    <th>Ranking</th>
+    <th>Average EPA</th>
+  </tr>
+  <tr>
+    <td>Run</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>Pass</td>
+    <td></td>
+   
+  </tr>
+ 
+ 
+</table>
 
-<br/>
-    <br/>
-    <input type="submit" name="confirm" id="confirm" value="Confirm" />
+	</div>
+	
+	</br></br></br></br>
+	</br>
+	</br></br>
+	</br>
+	</br>
+	</div>
 	</form>
-	<br/>
-	<form action="profile.php">     
-		<input type="submit" name="home" id="home" value="Back to Home">
-	</form>
-	<br/>
-  </fieldset>
 
+	
 </div>
  </body>
 </html>
