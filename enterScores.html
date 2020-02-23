@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+The html title
+-->
+<head>
+    <title>Football Play Calling</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="CTE" />
+	<link rel="stylesheet" type="text/css" href="cte.css">
+	<link rel="icon" href="book.jpg" >
+	
+
+
+</head>
+<!--
+The div to be able to place our contents with respect to the CSS code
+-->
+<body>
+<div class = "section">
+		<h3> Welcome to FootBall Play Calling</h3>
+		
+		<div class="video-container">
+			<div class="color-overlay"></div>
+			<video autoplay loop muted>
+				<source src="ShortFieldVideo.mp4" type = "video/mp4">
+			</video>
+		</div>
+	</div>
+	
+	
+<div class='wrapper1'>
+  <h1>~~Play and Score Simulation~~</h1>
+  
+  <br>
+                <!-- 
+	The signup-submit.php
+	  -writes the account information to the database as a new user
+	  -displays a welcome page
+	  -provides a link that takes the user to the home page 
+-->
+
+<form method="POST" action="enterScores.html">
+
+    
+	<div class="container1">
+	<p id='bookinfo'> ***Please fill in all information. Thank you!! ***</p>
+    <span><label for="teamTitle"><strong>Team Title: </strong></label></span>
+    <input type="text" name="teamTitle" id="teamTitle" size="25" />
+    <br/>
+    <br/>
+	<label for="fieldPosition"><strong>Field Position: </strong></label>
+    <input type="text" name="fieldPosition" id="fieldPosition" size="25" />
+	<br/>
+    <br/>
+	<label for="scoreDifferential"><strong>Score Differential: </strong></label>
+    <input type="text" name="scoreDifferential" id="scoreDifferential" size="25" /></span>
+    
+    
+	 
+	<br><br>		
+		<label for="down"><strong>Down: </strong></label>
+		<select name="down" id="down">
+	
+		<option value="Blank" checked="checked">Choose...</option>
+		<option value = "one">1</option>
+		<option value="two">2</option>
+		<option value="three">3</option>
+		<option value="four">4 </option>
+		</select>
+		
+		<br><br>
+		<label for="Distance"><strong> Distance: </strong></label>
+		<select name="Distance" id="distance">
+	
+		<option value="Blank" checked="checked">Choose...</option>
+		<option value = "short">Short</option>
+		<option value="medium">Medium</option>
+		<option value="long">Long</option>
+		<option value="extra_long"> Extra Long </option>
+		</select>
+		
+		<br><br>
+			
+		<label for="quarterNumber"><strong>Quarter Number: </strong></label>
+    <input type="radiogroup" name="classCode" id="Quarter Number" size="10" />
+	
+	
+	<br/>
+    <br/>
+	<label for="timeRemaining"><strong> Time Remaining: </strong></label>
+   	 <input type="text" name="timeRemaining" id="timeRemaining" size="10" />
+	<br/>
+	<br/>
+	 <label for="timeOuts"><strong>Time Outs: </strong></label>
+    <input type="text" name="timeOuts" id="timeOuts" size="10" />
+	
+	<br/></br>
+	<div class="hitsubmit">
+	<input type="submit" name="confirm" id="confirm" value="Confirm"/>
+	<br>
+	</div>
+	</br>
+	</br>
+	</div>
+
+	
+	<div class="container2">
+    <h5 id="results"> RESULTS</h5>
+	<fieldset>
+  <legend><strong>Run</strong></legend>
+  <label for="averageYards">Average Yards:</label>
+  <input type="number" id="averageYards" name="averageYards" hidden><br>
+  <label for="numbers">Numbers:</label>
+  <input type="number" id="numbers" name="numbers" hidden><br>
+  <label for="conversions">Conversions:</label>
+  <input type="number" id="conversions" name="conversions" hidden><br>
+ </fieldset>
+ 
+  <fieldset>
+  <legend><strong>Pass</strong></legend>
+  <label for="averageYards">Average Yards:</label>
+  <input type="number" id="averageYards" name="averageYards" hidden><br>
+  <label for="numbers">Numbers:</label>
+  <input type="number" id="numbers" name="numbers" hidden><br>
+  <label for="conversions">Conversions:</label>
+  <input type="number" id="conversions" name="conversions"hidden><br>
+  <label for="percentage">Percentage:</label>
+  <input type="number" id="percentage" name="percentage"hidden>
+ </fieldset>
+ <span>
+ <table>
+  <tr>
+    <th>Ranking</th>
+    <th>Average EPA</th>
+  </tr>
+  <tr>
+    <td>Run</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>Pass</td>
+    <td></td>
+   
+  </tr>
+ 
+ 
+</table>
+
+	</div>
+	
+	</br></br></br></br>
+	</br>
+	</br></br>
+	</br>
+	</br>
+	</div>
+	</form>
+
+	
+</div>
+ </body>
+</html>
