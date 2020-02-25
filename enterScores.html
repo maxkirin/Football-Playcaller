@@ -8,7 +8,7 @@ The html title
     <title>Football Play Calling</title>
     <meta charset="utf-8" />
     <meta name="description" content="CTE" />
-	<link rel="stylesheet" type="text/css" href="cte.css">
+  	<link rel="stylesheet" type="text/css" href="fpstyle.css">
 
 </head>
 <!--
@@ -16,7 +16,7 @@ The div to be able to place our contents with respect to the CSS code
 -->
 <body>
 	<div class = "section">
-			<h3> Welcome to FootBall Play Calling</h3>
+			<h3> Football Play Calling</h3>
 			
 			<div class="video-container">
 				<div class="color-overlay"></div>
@@ -25,15 +25,13 @@ The div to be able to place our contents with respect to the CSS code
 				</video>
 			</div>
 		</div>
-
 		
 		
 	<div class='wrapper1'>
-	<form method="POST" action="help.html">
-					<input style= "margin-top: 10px; margin-left:10px" type="submit" name="home" id="home" value="Help Guide">
-				</form>
 	  <h1>~~Play and Score Simulation~~</h1>
 	  
+	  <br>
+
 					<!-- 
 		The signup-submit.php
 		  -writes the account information to the database as a new user
@@ -43,7 +41,6 @@ The div to be able to place our contents with respect to the CSS code
 
 		<div class="container1">
 			<form id="situations">
-
 				<p id='bookinfo'> ***Please fill in all information. Thank you!! ***</p>
 				
 				<span><label for="teamTitle"><strong>Team Title: </strong></label></span>
@@ -100,11 +97,14 @@ The div to be able to place our contents with respect to the CSS code
 				</div>
 				</br>
 				</br>
-				</br></br>
 			</form>
 		</div>
+
+
+				
 	
-		<div id="container2" class="container2" style="visibility: hidden">
+		<div id="container2" class="container2">
+			<!--<h5 id="results"> RESULTS</h5>-->
 			<fieldset>
 				<legend><strong>Run</strong></legend>
 				  <label for="rplays">Total Plays:</label>
@@ -118,24 +118,27 @@ The div to be able to place our contents with respect to the CSS code
 				  <label for="rloss">Loss of yards %:</label>
 				  <input type="number" id="rloss" name="rloss" hidden><br>
 			</fieldset>
-		 
+			<br>
+
 			<fieldset>
 				<legend><strong>Pass</strong></legend>
 				  <label for="pplays">Total Plays:</label>
 				  <input type="number" id="pplays" name="pplays" hidden><br>
+				  <label for="pcompletions">Completion %:</label>
+				  <input type="number" id="pcompletions" name="pcompletions"hidden><br>
+				  <label for="pint">Interceptions:</label>
+				  <input type="number" id="pint" name="pint" hidden><br>
+				  <label for="psack">Sacks:</label>
+				  <input type="number" id="psack" name="psack" hidden><br>
 				  <label for="paverageYards">Average Yards:</label>
 				  <input type="number" id="paverageYards" name="paverageYards" hidden><br>
 				  <label for="pnumbers">Numbers:</label>
 				  <input type="number" id="pnumbers" name="pnumbers" hidden><br>
 				  <label for="pconversions">Conversion %:</label>
 				  <input type="number" id="pconversions" name="pconversions"hidden><br>
-				  <label for="pcompletions">Completion %:</label>
-				  <input type="number" id="pcompletions" name="pcompletions"hidden></br>
-				  <label for="pint">Interceptions:</label>
-				  <input type="number" id="pint" name="pint" hidden><br>
-				  <label for="psack">Sacks:</label>
-				  <input type="number" id="psack" name="psack" hidden><br>
-				  </fieldset>
+			</fieldset>
+			<br>
+
 			<table>
 				<tr>
 					<th>Ranking</th>
@@ -145,7 +148,7 @@ The div to be able to place our contents with respect to the CSS code
 					<td>Run</td>
 					<td></td>
 				</tr>
-		  
+
 				<tr>
 					<td>Pass</td>
 					<td></td>
@@ -167,4 +170,6 @@ The div to be able to place our contents with respect to the CSS code
 	<script src="app.js"></script>
 	
 </body>
+
 </html>
+
