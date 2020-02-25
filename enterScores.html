@@ -8,158 +8,168 @@ The html title
     <title>Football Play Calling</title>
     <meta charset="utf-8" />
     <meta name="description" content="CTE" />
-	<link rel="stylesheet" type="text/css" href="cte.css">
-	<link rel="icon" href="book.jpg" >
-	
-
+  	<link rel="stylesheet" type="text/css" href="fpstyle.css">
 
 </head>
 <!--
 The div to be able to place our contents with respect to the CSS code
 -->
 <body>
-<div class = "section">
-		<h3> Welcome to FootBall Play Calling</h3>
-		
-		<div class="video-container">
-			<div class="color-overlay"></div>
-			<video autoplay loop muted>
-				<source src="ShortFieldVideo.mp4" type = "video/mp4">
-			</video>
-		</div>
-	</div>
-	
-	
-<div class='wrapper1'>
-  <h1>~~Play and Score Simulation~~</h1>
-  
-  <br>
-                <!-- 
-	The signup-submit.php
-	  -writes the account information to the database as a new user
-	  -displays a welcome page
-	  -provides a link that takes the user to the home page 
--->
-
-<form method="POST" action="enterScores.html">
-
-    
-	<div class="container1">
-	<p id='bookinfo'> ***Please fill in all information. Thank you!! ***</p>
-    <span><label for="teamTitle"><strong>Team Title: </strong></label></span>
-    <input type="text" name="teamTitle" id="teamTitle" size="25" />
-    <br/>
-    <br/>
-	<label for="fieldPosition"><strong>Field Position: </strong></label>
-    <input type="text" name="fieldPosition" id="fieldPosition" size="25" />
-	<br/>
-    <br/>
-	<label for="scoreDifferential"><strong>Score Differential: </strong></label>
-    <input type="text" name="scoreDifferential" id="scoreDifferential" size="25" /></span>
-    
-    
-	 
-	<br><br>		
-		<label for="down"><strong>Down: </strong></label>
-		<select name="down" id="down">
-	
-		<option value="Blank" checked="checked">Choose...</option>
-		<option value = "one">1</option>
-		<option value="two">2</option>
-		<option value="three">3</option>
-		<option value="four">4 </option>
-		</select>
-		
-		<br><br>
-		<label for="Distance"><strong> Distance: </strong></label>
-		<select name="Distance" id="distance">
-	
-		<option value="Blank" checked="checked">Choose...</option>
-		<option value = "short">Short</option>
-		<option value="medium">Medium</option>
-		<option value="long">Long</option>
-		<option value="extra_long"> Extra Long </option>
-		</select>
-		
-		<br><br>
+	<div class = "section">
+			<h3> Football Play Calling</h3>
 			
-		<label for="quarterNumber"><strong>Quarter Number: </strong></label>
-    <input type="radiogroup" name="classCode" id="Quarter Number" size="10" />
-	
-	
-	<br/>
-    <br/>
-	<label for="timeRemaining"><strong> Time Remaining: </strong></label>
-   	 <input type="text" name="timeRemaining" id="timeRemaining" size="10" />
-	<br/>
-	<br/>
-	 <label for="timeOuts"><strong>Time Outs: </strong></label>
-    <input type="text" name="timeOuts" id="timeOuts" size="10" />
-	
-	<br/></br>
-	<div class="hitsubmit">
-	<input type="submit" name="confirm" id="confirm" value="Confirm"/>
-	<br>
-	</div>
-	</br>
-	</br>
-	</div>
+			<div class="video-container">
+				<div class="color-overlay"></div>
+				<video autoplay loop muted>
+					<source src="ShortFieldVideo.mp4" type = "video/mp4">
+				</video>
+			</div>
+		</div>
+		
+		
+	<div class='wrapper1'>
+	  <h1>~~Play and Score Simulation~~</h1>
+	  
+	  <br>
 
-	
-	<div class="container2">
-    <h5 id="results"> RESULTS</h5>
-	<fieldset>
-  <legend><strong>Run</strong></legend>
-  <label for="averageYards">Average Yards:</label>
-  <input type="number" id="averageYards" name="averageYards" hidden><br>
-  <label for="numbers">Numbers:</label>
-  <input type="number" id="numbers" name="numbers" hidden><br>
-  <label for="conversions">Conversions:</label>
-  <input type="number" id="conversions" name="conversions" hidden><br>
- </fieldset>
- 
-  <fieldset>
-  <legend><strong>Pass</strong></legend>
-  <label for="averageYards">Average Yards:</label>
-  <input type="number" id="averageYards" name="averageYards" hidden><br>
-  <label for="numbers">Numbers:</label>
-  <input type="number" id="numbers" name="numbers" hidden><br>
-  <label for="conversions">Conversions:</label>
-  <input type="number" id="conversions" name="conversions"hidden><br>
-  <label for="percentage">Percentage:</label>
-  <input type="number" id="percentage" name="percentage"hidden>
- </fieldset>
- <span>
- <table>
-  <tr>
-    <th>Ranking</th>
-    <th>Average EPA</th>
-  </tr>
-  <tr>
-    <td>Run</td>
-    <td></td>
-  </tr>
-  
-  <tr>
-    <td>Pass</td>
-    <td></td>
-   
-  </tr>
- 
- 
-</table>
+					<!-- 
+		The signup-submit.php
+		  -writes the account information to the database as a new user
+		  -displays a welcome page
+		  -provides a link that takes the user to the home page 
+		-->
 
+		<div class="container1">
+			<form id="situations">
+				<p id='bookinfo'> ***Please fill in all information. Thank you!! ***</p>
+				
+				<span><label for="teamTitle"><strong>Team Title: </strong></label></span>
+				<input type="text" name="teamTitle" id="teamTitle" size="25" />
+				<br/>
+				<br/>
+				
+				<label for="fieldPosition"><strong>Field Position: </strong></label>
+				<input type="text" name="fieldPosition" id="fieldPosition" size="25" />
+				<br/>
+				<br/>
+				
+				<label for="scoreDifferential"><strong>Score Differential: </strong></label>
+				<input type="text" name="scoreDifferential" id="scoreDifferential" size="25" /></span>
+				<br><br>		
+				
+				<label for="down"><strong>Down: </strong></label>
+				<select name="down" id="down">
+					<option value="Blank" checked="checked">Choose...</option>
+					<option value = "one">1</option>
+					<option value="two">2</option>
+					<option value="three">3</option>
+					<option value="four">4 </option>
+				</select>
+				<br><br>
+				
+				<label for="Distance"><strong> Distance: </strong></label>
+				<select name="Distance" id="distance">
+					<option value="Blank" checked="checked">Choose...</option>
+					<option value = "short">Short</option>
+					<option value="medium">Medium</option>
+					<option value="long">Long</option>
+					<option value="extra_long"> Extra Long </option>
+				</select>
+				<br><br>
+					
+				<label for="quarterNumber"><strong>Quarter Number: </strong></label>
+				<input type="radiogroup" name="classCode" id="Quarter Number" size="10" />
+				<br/>
+				<br/>
+				
+				<label for="timeRemaining"><strong> Time Remaining: </strong></label>
+				<input type="text" name="timeRemaining" id="timeRemaining" size="10" />
+				<br/>
+				<br/>
+				
+				<label for="timeOuts"><strong>Time Outs: </strong></label>
+				<input type="text" name="timeOuts" id="timeOuts" size="10" />
+				<br/></br>
+				
+				<div class="hitsubmit">
+					<input type="submit" name="confirm" id="confirm" value="Confirm"/>
+					<br>
+				</div>
+				</br>
+				</br>
+			</form>
+		</div>
+
+
+				
+	
+		<div id="container2" class="container2">
+			<!--<h5 id="results"> RESULTS</h5>-->
+			<fieldset>
+				<legend><strong>Run</strong></legend>
+				  <label for="rplays">Total Plays:</label>
+				  <input type="number" id="rplays" name="rplays" hidden><br>
+				  <label for="raverageYards">Average Yards:</label>
+				  <input type="number" id="raverageYards" name="raverageYards" hidden><br>
+				  <label for="rnumbers">Numbers:</label>
+				  <input type="number" id="rnumbers" name="rnumbers" hidden><br>
+				  <label for="rconversions">Conversion %:</label>
+				  <input type="number" id="rconversions" name="rconversions" hidden><br>
+				  <label for="rloss">Loss of yards %:</label>
+				  <input type="number" id="rloss" name="rloss" hidden><br>
+			</fieldset>
+			<br>
+
+			<fieldset>
+				<legend><strong>Pass</strong></legend>
+				  <label for="pplays">Total Plays:</label>
+				  <input type="number" id="pplays" name="pplays" hidden><br>
+				  <label for="pcompletions">Completion %:</label>
+				  <input type="number" id="pcompletions" name="pcompletions"hidden><br>
+				  <label for="pint">Interceptions:</label>
+				  <input type="number" id="pint" name="pint" hidden><br>
+				  <label for="psack">Sacks:</label>
+				  <input type="number" id="psack" name="psack" hidden><br>
+				  <label for="paverageYards">Average Yards:</label>
+				  <input type="number" id="paverageYards" name="paverageYards" hidden><br>
+				  <label for="pnumbers">Numbers:</label>
+				  <input type="number" id="pnumbers" name="pnumbers" hidden><br>
+				  <label for="pconversions">Conversion %:</label>
+				  <input type="number" id="pconversions" name="pconversions"hidden><br>
+			</fieldset>
+			<br>
+
+			<table>
+				<tr>
+					<th>Ranking</th>
+					<th>Average EPA</th>
+				</tr>
+				<tr>
+					<td>Run</td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td>Pass</td>
+					<td></td>
+		   
+				</tr>
+		 
+		 
+			</table>
+
+		</div>
+	
+		</br></br></br></br>
+		</br>
+		</br></br>
+		</br>
+		</br>
 	</div>
 	
-	</br></br></br></br>
-	</br>
-	</br></br>
-	</br>
-	</br>
-	</div>
-	</form>
-
+	<script src="app.js"></script>
 	
-</div>
- </body>
+</body>
+
 </html>
+
