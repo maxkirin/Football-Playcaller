@@ -1,0 +1,64 @@
+<html>
+
+<head>
+<title>Database Testing</title>
+
+<!--Various javascript files which are needed for this demo-->
+<!-- Firebase App is always required and must be first -->
+<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
+
+
+</head>
+
+<body>
+
+ <button type="button" id="data">Get data from database</button>
+ <button type="button" id="write">Send data to database</button>
+ <script>
+
+  //Key which allows access to the various functions of Firebase without needing user account and authentication
+  var config = {
+    "apiKey": "AIzaSyAGyoxhLyCEyJo1Km37xvwKyAyQiR00Z_g",
+    "databaseURL": "https://football-playcaller-f3ade.firebaseio.com",
+    "storageBucket": "football-playcaller-f3ade.appspot.com",
+    "authDomain": "football-playcaller-f3ade.firebaseapp.com",
+    "projectId": "1:180449355890:web:a3b76fdf536458dab97aeb"
+  };
+  firebase.initializeApp(config);
+
+
+  function ShowData() {
+    //Create reference to the database and child we are using
+    let db = firebase.database();
+    let ref = db.ref("example");
+    console.log("data retrieved");
+    //display database contents by value
+    ref.orderByValue().on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+    console.log("Color: " + data.key + " || Hex Value: " + data.val());
+      });
+    });
+
+    console.log("Data displayed");
+  }
+
+
+  function WriteData(){
+    let db = firebase.database();
+    let ref = db.ref("example");
+
+    //Create new node key TEST and value TESTDATA
+    ref.child("TEST").set("TESTDATA");
+    console.log("Data written.")
+  }
+
+   document.getElementById('data').addEventListener('click', ShowData);
+   document.getElementById('write').addEventListener('click', WriteData);
+
+</script>
+</body>
+</html>
