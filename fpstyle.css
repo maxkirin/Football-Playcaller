@@ -1,6 +1,5 @@
 /*
-Authors: Max Kirin, Lyn Huo, Jesus Acosta,
-		Philip Lee & Marie Grace Imanariyo
+Authors: Max Kirin, Diego Rojo, Keila Cressman & Grace Imanariyo
 cte.css
 This creates the style we want to implement on all of our webpages
 	-accessed by each page in header, or by using background.html
@@ -12,7 +11,9 @@ used on all of our pages to define our div tags, where we print all of our text
 */
 .wrapper1{
 	background-image:url(field2.jpg);
-	background-repeat: repeat;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 77%;
 	border: 2px solid black;
 	width:100%;
 	height:750px;
@@ -214,7 +215,7 @@ input{
 	display:inline-block;
 	font-family:courier,arial,helvetica;
 	font-weight:bold;
-	text-align:center;
+	text-align:left;
 	padding: 10px;
 	visibility: hidden;
 }
