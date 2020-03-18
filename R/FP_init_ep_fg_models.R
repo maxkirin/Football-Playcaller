@@ -19,20 +19,20 @@ pbp_data <- get_pbp_data(2009:2017)
 
 #added
 #save to file
-write_csv(pbp_data, "data/FP_pbp_data.csv")
+#write_csv(pbp_data, "data/FP_pbp_data.csv")
 #get all seasons data using scrape_season_play_by_play
 #pbp_data <- map_dfr(2009:2018,
 #                    function(x){
 #                      scrape_season_play_by_play(season = x)
 #                    })
 #just 2018 season
-pbp_data_2018 <- read.csv("data/FP_pbp_data_2018.csv")
+#pbp_data_2018 <- read.csv("data/FP_pbp_data_2018.csv")
 #save to file
-write_csv(pbp_data_2018, "data/FP_pbp_data_2018.csv")
+#write_csv(pbp_data_2018, "data/FP_pbp_data_2018.csv")
 #add 2018 data to rest of seasons
-pbp_data_all <- rbind(pbp_data, pbp_data_2018)
+#pbp_data_all <- rbind(pbp_data, pbp_data_2018)
 #save to file
-write_csv(pbp_data_all, "data/FP_pbp_data_all.csv")
+#write_csv(pbp_data_all, "data/FP_pbp_data_all.csv")
 
 
 
