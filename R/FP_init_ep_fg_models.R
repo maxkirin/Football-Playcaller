@@ -13,7 +13,7 @@ library(nflscrapR)
 
 # Load data from 2009 to 2016 from the nflscrapR-data repository using the
 # get_pbp_data() function from the nflWAR package:
-pbp_data <- get_pbp_data(2009:2017)
+pbp_data <- get_pbp_data(2015:2017)
 
 
 
