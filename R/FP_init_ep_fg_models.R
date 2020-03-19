@@ -13,7 +13,8 @@ library(nflscrapR)
 
 # Load data from 2009 to 2016 from the nflscrapR-data repository using the
 # get_pbp_data() function from the nflWAR package:
-pbp_data <- get_pbp_data(2015:2017)
+pbp_data <- get_pbp_data(2014:2017)
+#pbp_data <- read.csv("data/FP_pbp_data.csv")
 
 
 
@@ -277,7 +278,7 @@ pbp_ep_model_data <- pbp_ep_model_data %>%
 # Save dataset in data folder as pbp_ep_model_data.csv
 # (NOTE: this dataset is not pushed due to its size exceeding
 # the github limit but will be referenced in other files)
-write_csv(pbp_ep_model_data, "data/FP_pbp_ep_model_data.csv")
+write_csv(pbp_ep_model_data, "data/FP_pbp_ep_model_data_4_szn.csv")
 
 # Fit the expected points model:
 # install.packages("nnet")
@@ -288,7 +289,7 @@ ep_model <- nnet::multinom(Next_Score_Half ~ TimeSecs_Remaining + yrdline100 +
                            weights = Total_W_Scaled, maxit = 300)
 
 # Save the model (commented out due to file size limit)
-save(ep_model, file="FP_ep_model.RData")
+save(ep_model, file="FP_ep_model_4_szn.RData")
 
 # ----------------------------------------------------------------------------
 
@@ -303,15 +304,16 @@ nrow(fg_model_data)
 # Save dataset in data folder as fg_model_data.csv
 # (NOTE: this dataset is not pushed due to its size exceeding
 # the github limit but will be referenced in other files)
-write_csv(fg_model_data, "data/FP_fg_model_data.csv")
+write_csv(fg_model_data, "data/FP_fg_model_data_4_szn.csv")
 
-# Fit the field goal model:
+# Fit the field goal model
 # install.packages("mgcv")
 fg_model <- mgcv::bam(sp ~ s(yrdline100),
                       data = fg_model_data, family = "binomial")
 
 # Save the model (commented out due to file size limit)
-save(fg_model, file="FP_fg_model.RData")
+save(fg_model, file="FP_fg_model_4_szn.RData")
+
 
 
 
