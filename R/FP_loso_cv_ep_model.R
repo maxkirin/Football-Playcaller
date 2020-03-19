@@ -104,8 +104,6 @@ calc_ep_multinom_loso_cv <- function(ep_formula, weight_type = 3,
               train_data$model_weights <- rep(1, nrow(train_data))
             }
 
-            print(train_data$model_weights)
-
             # Build model using maxit at 300 for now:
             ep_model <- nnet::multinom(ep_formula,
                                        data = train_data,
