@@ -9,12 +9,18 @@ The html title
     <meta charset="utf-8" />
     <meta name="description" content="CTE" />
 	<link rel="stylesheet" type="text/css" href="fpstyle.css">
-
+	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
+	<!--<script language = "javascript" type = "text/javascript" src="libraries/p5.js"></script>
+	<script language = "javascript" src="libraries/p5.dom.js"></script>
+	<script language = "javascript" type = "text/javascript" src="sketch.js"></script>-->
 </head>
 <!--
 The div to be able to place our contents with respect to the CSS code
 -->
 <body>
+	
 	<div class = "section">
 			<h3> Football Play Calling</h3>
 			
@@ -98,62 +104,40 @@ The div to be able to place our contents with respect to the CSS code
 				</br>
 			</form>
 		</div>
-
+			
 	
 		<div id="container2" class="container2">
-			<!--<h5 id="results"> RESULTS</h5>-->
-			<fieldset>
-				<legend><strong>Run</strong></legend>
-				  <label for="rplays">Total Plays:</label>
-				  <input type="text" id="rplays" name="rplays" readonly="readonly"><br>
-				  <label for="raverageYards">Average Yards:</label>
-				  <input type="number" id="raverageYards" name="raverageYards" readonly="readonly"><br>
-				  <label for="rnumbers">Numbers:</label>
-				  <input type="number" id="rnumbers" name="rnumbers" readonly="readonly"><br>
-				  <label for="rconversions">Conversion %:</label>
-				  <input type="number" id="rconversions" name="rconversions" readonly="readonly"><br>
-				  <label for="rloss">Loss of yards %:</label>
-				  <input type="number" id="rloss" name="rloss" readonly="readonly"><br>
-			</fieldset>
-			<br>
-			<fieldset>
-				<legend><strong>Pass</strong></legend>
-				  <label for="pplays">Total Plays:</label>
-				  <input type="number" id="pplays" name="pplays" readonly="readonly"><br>
-				  <label for="pcompletions">Completion %:</label>
-				  <input type="number" id="pcompletions" name="pcompletions" readonly="readonly"><br>
-				  <label for="pint">Interceptions:</label>
-				  <input type="number" id="pint" name="pint" readonly="readonly"><br>
-				  <label for="psack">Sacks:</label>
-				  <input type="number" id="psack" name="psack" readonly="readonly"><br>
-				  <label for="paverageYards">Average Yards:</label>
-				  <input type="number" id="paverageYards" name="paverageYards" readonly="readonly"><br>
-				  <label for="pnumbers">Numbers:</label>
-				  <input type="number" id="pnumbers" name="pnumbers" readonly="readonly"><br>
-				  <label for="pconversions">Conversion %:</label>
-				  <input type="number" id="pconversions" name="pconversions"readonly="readonly"><br>
-			</fieldset>
-			<br>
-			<table>
-				<tr>
-					<th>Ranking</th>
-					<th>Average EPA</th>
-				</tr>
-				<tr>
-					<td>Run</td>
-					<td></td>
-				</tr>
+			<textarea id="text" placeholder="Enter info..."></textarea>
+			<button type="buttonw" id="write" onclick="WriteData()">Send data to database</button>
+			<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>
+			<h2 id="head1">RESULTS<h2>
+			 <script>
 				
-				<tr>
-					<td>Pass</td>
-					<td></td>
-		   
-				</tr>
-		 
-		 
-			</table>
-
+			  //Key which allows access to the various functions of Firebase without needing user account and authentication
+			  var config = {
+				"apiKey": "AIzaSyAGyoxhLyCEyJo1Km37xvwKyAyQiR00Z_g",
+				"databaseURL": "https://football-playcaller-f3ade.firebaseio.com",
+				"storageBucket": "football-playcaller-f3ade.appspot.com",
+				"authDomain": "football-playcaller-f3ade.firebaseapp.com",
+				"projectId": "1:180449355890:web:a3b76fdf536458dab97aeb"
+			  };
+			  firebase.initializeApp(config);
+				//console.log(firebase);
+				/*var db = firebase.database();
+				var ref = db.ref("Example");		//title of category
+				
+				var data = {			//creates subcategory
+				test1: "yes",			//cretaes 1st child
+				test2: "no"				//creats 2nd child
+				}
+				ref.push(data);	*/		//adds to database
+			</script>
+			<!--<p>
+				<ol id = "scorelist">
+				</ol>
+			</p>-->
 		</div>
+		
 	
 		</br></br></br></br>
 		</br>
@@ -163,6 +147,9 @@ The div to be able to place our contents with respect to the CSS code
 	</div>
 	
 	<script src="app.js"></script>
+	
+	
+	
 	
 </body>
 </html>

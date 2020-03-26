@@ -3,7 +3,7 @@ Authors: Max Kirin, Diego Rojo, Keila Cressman & Grace Imanariyo
 cte.css
 This creates the style we want to implement on all of our webpages
 	-accessed by each page in header, or by using background.html
-*/ 
+*/
 
 
 /*
@@ -11,8 +11,8 @@ used on all of our pages to define our div tags, where we print all of our text
 */
 .wrapper1{
 	background-image:url(field2.jpg);
-	background-size: cover;				
-	background-repeat: no-repeat;		
+	background-size: cover;
+	background-repeat: no-repeat;
 	background-position: 50% 77%;
 	border: 2px solid black;
 	width:100%;
@@ -20,9 +20,9 @@ used on all of our pages to define our div tags, where we print all of our text
 	font-size:14pt;
 	color: white;
 	position:relative;
-	
+
 	border-radius: 20px;
-	
+
 	opacity:.8;
 
 }
@@ -31,19 +31,19 @@ used on all of our pages to define our div tags, where we print all of our text
 {
 		text-align:center;
 }
-	
+
 
 /*
 formats our buttons, especially useful when used in the tables
 */
-button
+/*button
 {
 	color:#AC3054;
 	height:50px;
 	width:50px;
 	position:relative;
 
-}
+}*/
 
 p.span
 {
@@ -56,7 +56,7 @@ legend
 	text-align:center;
 	margin-left:50%;
 	margin-right:50%;
-	
+
 }
 
 /*certain information that we print we want to appear red, to show urgency to the user*/
@@ -71,7 +71,7 @@ legend
 body
 {
 	background-size: 1000px 1000px;
-	
+
 	font-family:courier,arial,helvetica;
 	background-color: #1f7a1f;
 	position:relative;
@@ -117,7 +117,7 @@ label
 /*all input fields are centered*/
 input{
 	position:auto;
-	
+
 }
 
 #results
@@ -136,12 +136,12 @@ input{
 	overflow: hidden;
 	padding:10px;
 	font-family:courier,arial,helvetica;
-	
+
 }
 
 .section h3
 {
-	
+
 	text-align: center;
 	font-size: 6rem;
 	font-family: "cookie";
@@ -154,7 +154,7 @@ input{
 }
 .section h1
 {
-	
+
 	text-align: center;
 	font-size: 6rem;
 	font-family: "cookie";
@@ -184,7 +184,7 @@ input{
 	width:100%;
 	height:100vh;
 	opacity:0.3;
-	
+
 }
 
 
@@ -200,9 +200,9 @@ input{
 	opacity:0.9;
 	font-family:courier,arial,helvetica;
 	padding:10px;
-	
+
 }
-	
+
 .container2
 {
 	margin-right:40px;
@@ -212,10 +212,10 @@ input{
 	width:43%;
 	height:80%;
 	float:right;
-	display:inline-block;	
+	display:inline-block;
 	font-family:courier,arial,helvetica;
-	font-weight:bold;	
-	text-align:center;
+	font-weight:bold;
+	text-align:left;
 	padding: 10px;
 	visibility: hidden;
 }
