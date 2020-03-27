@@ -12,8 +12,8 @@ library(nnet)
 # (NOTE this file was not pushed since due to the GitHub file size limit)
 # (For some reason read_csv fails to read in the TimeSecs_Remaining values
 # for 138 plays so we use read.csv instead)
-pbp_ep_model_data <- read.csv("data/FP_pbp_ep_model_data_4_szn.csv") %>%
-  mutate(down = factor(down))
+pbp_ep_model_data <- read.csv("data/FP_pbp_ep_model_data_4_szn_short.csv") %>%
+  mutate(down = factor(down), posteam_timeouts_pre = factor(posteam_timeouts_pre))
 
 #' Function to compute leave-one-season-out cross validation predictions
 #' for the expected points model using multinomial logistic regression in nnet.
@@ -131,14 +131,15 @@ ep_model_loso_preds <- calc_ep_multinom_loso_cv(as.formula("Next_Score_Half ~
                                                            yrdline100*down +
                                                            GoalToGo*log_ydstogo +
                                                            Under_TwoMinute_Warning +
-                                                           ScoreDiff"),
+                                                           ScoreDiff*TimeSecs_Remaining + AbsScoreDiff*TimeSecs_Remaining +
+                                                           posteam_timeouts_pre"),
                                                 ep_model_data = pbp_ep_model_data,
-                                                weight_type = 4)
+                                                weight_type = 2)
 
 # Save dataset in data folder as ep_model_loso_preds.csv
 # (NOTE: this dataset is not pushed due to its size exceeding
 # the github limit but will be referenced in other files)
-write_csv(ep_model_loso_preds, "data/FP_ep_model_loso_preds_4_szn.csv")
+write_csv(ep_model_loso_preds, "data/FP_ep_model_loso_preds_4_szn_short.csv")
 
 
 # Use the following pipeline to create a dataset used for charting the
@@ -212,10 +213,6 @@ cv_cal_error <- ep_cv_loso_calibration_results %>%
   group_by(next_score_type) %>%
   summarize(weight_cal_error = weighted.mean(cal_diff, n_plays, na.rm = TRUE),
             n_scoring_event = sum(n_scoring_event, na.rm = TRUE))
-
-# Overall weighted calibration error:
-with(cv_cal_error, weighted.mean(weight_cal_error, n_scoring_event))
-# 0.01309723
 
 # ------------------------------------------------------------------
 
@@ -416,10 +413,11 @@ ep_fg_model_loso_preds <- calc_ep_multinom_fg_loso_cv(as.formula("Next_Score_Hal
                                                            yrdline100*down +
                                                            GoalToGo*log_ydstogo +
                                                            Under_TwoMinute_Warning +
-                                                           ScoreDiff"),
+                                                           ScoreDiff*TimeSecs_Remaining + AbsScoreDiff*TimeSecs_Remaining +
+                                                           posteam_timeouts_pre"),
                                                       as.formula("sp ~ s(yrdline100)"),
                                                       ep_model_data = pbp_ep_model_data,
-                                                      weight_type = 4)
+                                                      weight_type = 2)
 
 # Use the following pipeline to create a dataset used for charting the
 # cross-validation calibration results:
