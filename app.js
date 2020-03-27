@@ -12,43 +12,38 @@ var buttond = document.getElementById("data");
 var head1 = document.getElementById("head1");
 
 function ShowData(){
-	var db = firebase.database();
-	var ref = db.ref("example");
-	ref.on('value',gotData, noData);   	//on event value call data
+	var db = firebase.database();					//up to football-playcaller-f3ade
+	var ref = db.ref().child("week2");				//up to parent node that we need access to
+	ref.on("child_added", snap=>{					//child_added event to retrieve list of items
+													//snap like (function(snapshot))
+		var away_score = snap.child("away_score").val();		//each value of child key stored
+		var away_team = snap.child("away_team").val();
+		var game_id = snap.child("game_id").val();
+		var game_url = snap.child("game_url").val();
+		var home_score = snap.child("home_score").val();
+		var home_team = snap.child("home_team").val();
+		var season = snap.child("season").val();
+		var state_of_game = snap.child("state_of_game").val();
+		var type = snap.child("type").val();
+		var week = snap.child("week").val();
+		//creates a table to add in "enterScores.html"
+		$("#table_body").append("<tr><td>"+away_score+"</td><td>"+away_team+"</td><td>"+game_id+
+						"</td><td>"+game_url+"</td><td>"+home_score+"</td><td>"+home_team+
+						"</td><td>"+season+"</td><td>"+type+"</td><td>"+week+"</td></tr>");
+	})
+	
 }	
 
-function gotData(data){
-	console.log(data.val());			//shows arrays of data
-	var Example = data.val()
-	var keys = Object.keys(Example);
-	//head1.innerText = keys;
-	console.log(keys);					//displays list of data
-	for (var i = 0; i < keys.length; i++){
-		var k = keys[i];
-		var test1 = Example[k].test1;
-		var test2 = Example[k].test2;
-		head1.innerText = (test1+ " : " +test2);	//displays last child of parent node data
-		console.log(test1,test2);		//displays last children of parent node data
-		
-		//var li = createElement("li", test1 + ":" + test2);
-		//li.parent("scorelist");
-	}
-}
-
-function noData(error){
-	console.log("Error!!!");
-	console.log(error);
-}
-
 function WriteData(){								//when send clicked creates new child
-	//var val = text.value;
-	var db = firebase.database();
-	var ref = db.ref("Example");		//title of category
-	var data = {
-			test1: "yes3",
-			test2: "no"
-	}
-	ref.push(data);
-	//ref.child("mytest").set(val);			//child is subcategory; set inserts items to subcategory
-}
+	
+	let db = firebase.database();
+    let ref = db.ref("example");
+
+    //Create new node key TEST and value TESTDATA
+    ref.child("TEST").set("TESTDATA");
+    console.log("Data written.")
+  }
+
+
+
 

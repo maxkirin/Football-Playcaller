@@ -107,6 +107,7 @@ The div to be able to place our contents with respect to the CSS code
 			
 	
 		<div id="container2" class="container2">
+		<body id="table_body">
 			<textarea id="text" placeholder="Enter info..."></textarea>
 			<button type="buttonw" id="write" onclick="WriteData()">Send data to database</button>
 			<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>
@@ -123,19 +124,9 @@ The div to be able to place our contents with respect to the CSS code
 			  };
 			  firebase.initializeApp(config);
 				//console.log(firebase);
-				/*var db = firebase.database();
-				var ref = db.ref("Example");		//title of category
 				
-				var data = {			//creates subcategory
-				test1: "yes",			//cretaes 1st child
-				test2: "no"				//creats 2nd child
-				}
-				ref.push(data);	*/		//adds to database
 			</script>
-			<!--<p>
-				<ol id = "scorelist">
-				</ol>
-			</p>-->
+		</body>	
 		</div>
 		
 	
@@ -145,11 +136,9 @@ The div to be able to place our contents with respect to the CSS code
 		</br>
 		</br>
 	</div>
-	
+	<!--jquery needed so we can append to list instead of ust one line-->
+	<script src = "https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="app.js"></script>
-	
-	
-	
-	
+
 </body>
 </html>
