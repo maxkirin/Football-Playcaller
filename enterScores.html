@@ -107,12 +107,13 @@ The div to be able to place our contents with respect to the CSS code
 			
 	
 		<div id="container2" class="container2">
-		<body id="table_body">
 			<textarea id="text" placeholder="Enter info..."></textarea>
 			<button type="buttonw" id="write" onclick="WriteData()">Send data to database</button>
 			<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>
-			<h2 id="head1">RESULTS<h2>
-			 <script>
+			<h3>RESULTS</h3>
+			<h6 id="sea"></h6>
+			<h6 id="result"></h6>
+			<script>
 				
 			  //Key which allows access to the various functions of Firebase without needing user account and authentication
 			  var config = {
@@ -125,8 +126,7 @@ The div to be able to place our contents with respect to the CSS code
 			  firebase.initializeApp(config);
 				//console.log(firebase);
 				
-			</script>
-		</body>	
+			</script>	
 		</div>
 		
 	
@@ -136,7 +136,7 @@ The div to be able to place our contents with respect to the CSS code
 		</br>
 		</br>
 	</div>
-	<!--jquery needed so we can append to list instead of ust one line-->
+	<!--jquery needed so we can append to list instead of just one line-->
 	<script src = "https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="app.js"></script>
 
