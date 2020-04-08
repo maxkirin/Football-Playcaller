@@ -16,12 +16,8 @@ function ShowData(){
 	var db = firebase.database();					//up to football-playcaller-f3ade
 	var ref = db.ref().child("week2");				//up to parent node that we need access to
 	
-	/*ref.orderByValue().on("value", function(snapshot) {
-		snapshot.forEach(function(data) {
-			head1.innerText = data.val();
-			console.log(data.val());
-		});
-    });*/
+	//ref.orderByValue() - will print the whole table
+	//the way it is now will display the away score in order; only showing the highest value
 	ref.orderByChild("away_score").limitToLast(1).on("child_added", snap=>{		//child_added event to retrieve list of items
 													//snap like (function(snapshot))
 		var away_score = snap.child("away_score").val();		//each value of child key stored
@@ -36,12 +32,21 @@ function ShowData(){
 		var week = snap.child("week").val();
 		
 		//if (input == "1"){
-		$("#awayS").append("<th>"+away_score+"</th>");
+		$("#awayS").append("\t"+away_score);
+		$("#awayT").append("\t"+away_team);
+		$("#gameI").append("\t"+game_id);
+		$("#gameU").append("\t"+game_url);
+		$("#homeS").append("\t"+home_score);
+		$("#homeT").append("\t"+home_team);
+		$("#seaS").append("\t"+season);
+		$("#stateG").append("\t"+state_of_game);
+		$("#typE").append("\t"+type);
+		$("#weeK").append("\t"+week);
 		//head1.innerText = snap.child("away_score").val();
 		//}
 		//creates a table to add in "enterScores.html" using jquery
 		//else {
-			$("#result").append("<tr><td>"+away_score+"</td><td>"+away_team+"</td><td>"+game_id+
+		$("#result").append("<tr><td>"+away_score+"</td><td>"+away_team+"</td><td>"+game_id+
 						"</td><td>"+game_url+"</td><td>"+home_score+"</td><td>"+home_team+
 						"</td><td>"+season+"</td><td>"+type+"</td><td>"+week+"</td></tr>");
 		//}
