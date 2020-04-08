@@ -93,11 +93,12 @@ The div to be able to place our contents with respect to the CSS code
 				<br/>
 				
 				<label for="timeOuts"><strong>Time Outs: </strong></label>
-				<input type="text" name="timeOuts" id="timeOuts" size="10" />	
+				<textarea id="text" placeholder="" rows="1" cols="10"></textarea>	
 				<br/></br>
 				
 				<div class="hitsubmit">
 					<input type="submit" name="confirm" id="confirm" value="Confirm"/>
+					
 					<br>
 				</div>
 				</br>
@@ -107,12 +108,6 @@ The div to be able to place our contents with respect to the CSS code
 			
 	
 		<div id="container2" class="container2">
-			<textarea id="text" placeholder="Enter info..."></textarea>
-			<button type="buttonw" id="write" onclick="WriteData()">Send data to database</button>
-			<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>
-			<h3>RESULTS</h3>
-			<h6 id="sea"></h6>
-			<h6 id="result"></h6>
 			<script>
 				
 			  //Key which allows access to the various functions of Firebase without needing user account and authentication
@@ -127,6 +122,61 @@ The div to be able to place our contents with respect to the CSS code
 				//console.log(firebase);
 				
 			</script>	
+			<button type="buttonw" id="write" onclick="WriteData()">Send data to database</button>
+			<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>
+			<h3 id="head1">RESULTS</h3>
+			
+			<h6 id="result"></h6>
+			<fieldset>
+				<legend><strong>Run</strong></legend>
+				  <label for="rplays" id="awayS">Total Plays:</label>
+				  <input type="number" id="rplays" name="rplays"><br>
+				  <label for="raverageYards">Average Yards:</label>
+				  <input type="number" id="raverageYards" name="raverageYards" hidden><br>
+				  <label for="rnumbers">Numbers:</label>
+				  <input type="number" id="rnumbers" name="rnumbers" hidden><br>
+				  <label for="rconversions">Conversion %:</label>
+				  <input type="number" id="rconversions" name="rconversions" hidden><br>
+				  <label for="rloss">Loss of yards %:</label>
+				  <input type="number" id="rloss" name="rloss" hidden><br>
+			</fieldset>
+			<br>
+			<fieldset>
+				<legend><strong>Pass</strong></legend>
+				  <label for="pplays">Total Plays:</label>
+				  <input type="number" id="pplays" name="pplays" hidden><br>
+				  <label for="pcompletions">Completion %:</label>
+				  <input type="number" id="pcompletions" name="pcompletions"hidden><br>
+				  <label for="pint">Interceptions:</label>
+				  <input type="number" id="pint" name="pint" hidden><br>
+				  <label for="psack">Sacks:</label>
+				  <input type="number" id="psack" name="psack" hidden><br>
+				  <label for="paverageYards">Average Yards:</label>
+				  <input type="number" id="paverageYards" name="paverageYards" hidden><br>
+				  <label for="pnumbers">Numbers:</label>
+				  <input type="number" id="pnumbers" name="pnumbers" hidden><br>
+				  <label for="pconversions">Conversion %:</label>
+				  <input type="number" id="pconversions" name="pconversions"hidden><br>
+			</fieldset>
+			<br>
+			<table>
+				<tr>
+					<th>Ranking</th>
+					<th>Average EPA</th>
+				</tr>
+				<tr>
+					<td>Run</td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td>Pass</td>
+					<td></td>
+		   
+				</tr>
+		 
+		 
+			</table>
 		</div>
 		
 	

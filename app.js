@@ -15,10 +15,14 @@ function ShowData(){
 	var input = text.value;
 	var db = firebase.database();					//up to football-playcaller-f3ade
 	var ref = db.ref().child("week2");				//up to parent node that we need access to
-	/*if (input.equals(ref.child("season"))){
-			$("#sea").append("<tr>"+season+"</tr>");
-		}*/
-	ref.on("child_added", snap=>{					//child_added event to retrieve list of items
+	
+	/*ref.orderByValue().on("value", function(snapshot) {
+		snapshot.forEach(function(data) {
+			head1.innerText = data.val();
+			console.log(data.val());
+		});
+    });*/
+	ref.orderByChild("away_score").limitToLast(1).on("child_added", snap=>{		//child_added event to retrieve list of items
 													//snap like (function(snapshot))
 		var away_score = snap.child("away_score").val();		//each value of child key stored
 		var away_team = snap.child("away_team").val();
@@ -31,11 +35,16 @@ function ShowData(){
 		var type = snap.child("type").val();
 		var week = snap.child("week").val();
 		
-		
+		//if (input == "1"){
+		$("#awayS").append("<th>"+away_score+"</th>");
+		//head1.innerText = snap.child("away_score").val();
+		//}
 		//creates a table to add in "enterScores.html" using jquery
-		$("#result").append("<tr><td>"+away_score+"</td><td>"+away_team+"</td><td>"+game_id+
+		//else {
+			$("#result").append("<tr><td>"+away_score+"</td><td>"+away_team+"</td><td>"+game_id+
 						"</td><td>"+game_url+"</td><td>"+home_score+"</td><td>"+home_team+
 						"</td><td>"+season+"</td><td>"+type+"</td><td>"+week+"</td></tr>");
+		//}
 	})
 }	
 
