@@ -16,10 +16,11 @@ function ShowData(){
 	var db = firebase.database();					//up to football-playcaller-f3ade
 	var ref = db.ref().child("week2");				//up to parent node that we need access to
 	
-	//ref.orderByValue() - will print the whole table
+	//ref.orderByValue() - will print the whole table and the number nodes
 	//the way it is now will display the away score in order; only showing the highest value
-	ref.orderByChild("away_score").limitToLast(1).on("child_added", snap=>{		//child_added event to retrieve list of items
-													//snap like (function(snapshot))
+	ref.orderByChild("away_score").limitToLast(1).on("child_added", snap=>{		
+																			//child_added event to retrieve list of items
+													
 		var away_score = snap.child("away_score").val();		//each value of child key stored
 		var away_team = snap.child("away_team").val();
 		var game_id = snap.child("game_id").val();
@@ -31,7 +32,7 @@ function ShowData(){
 		var type = snap.child("type").val();
 		var week = snap.child("week").val();
 		
-		//if (input == "1"){
+		
 		$("#awayS").append("\t"+away_score);
 		$("#awayT").append("\t"+away_team);
 		$("#gameI").append("\t"+game_id);
@@ -42,18 +43,11 @@ function ShowData(){
 		$("#stateG").append("\t"+state_of_game);
 		$("#typE").append("\t"+type);
 		$("#weeK").append("\t"+week);
-		//head1.innerText = snap.child("away_score").val();
-		//}
-		//creates a table to add in "enterScores.html" using jquery
-		//else {
-		$("#result").append("<tr><td>"+away_score+"</td><td>"+away_team+"</td><td>"+game_id+
-						"</td><td>"+game_url+"</td><td>"+home_score+"</td><td>"+home_team+
-						"</td><td>"+season+"</td><td>"+type+"</td><td>"+week+"</td></tr>");
-		//}
+				
 	})
 }	
 
-function WriteData(){								//when send clicked creates new child
+function WriteData(){		//when send clicked creates new child
 	
 	let db = firebase.database();
     let ref = db.ref("example");
