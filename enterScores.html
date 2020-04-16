@@ -48,13 +48,17 @@ The div to be able to place our contents with respect to the CSS code
 			<form id="situations" action="/action_page.php" method="post">		
 				<p id='bookinfo'> ***Please fill in all information. Thank you!! ***</p>
 				
-				<span><label for="teamTitle"><strong>Team Title: </strong></label></span>
-				<input type="text" name="teamTitle" id="teamTitle" size="25" />		
-				<br/>
-				<br/>
-				
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
-				<input type="text" name="fieldPosition" id="fieldPosition" size="25" />
+				<select name="fieldPosition" id="fieldPosition" >
+					<option value="" checked="checked">N/A</option>
+					<option value="1">Backed Up (own goal line - -10)</option>
+					<option value="2">-10 - -25</option>
+					<option value="3">-25 - 50</option>
+					<option value="4">50 - +25 </option>
+					<option value="5">Red Zone (+25 - +10)</option>
+					<option value="6">+10 - +3</option>
+					<option value="7">Goal Line (+3 - goal line)</option>
+				</select>				
 				<br/>
 				<br/>
 				
@@ -64,37 +68,52 @@ The div to be able to place our contents with respect to the CSS code
 				
 				<label for="down"><strong>Down: </strong></label>
 				<select name="down" id="down" >
-					<option value="" checked="checked">Choose...</option>
-					<option value = "one">1</option>
-					<option value="two">2</option>
-					<option value="three">3</option>
-					<option value="four">4 </option>
+					<option value="" checked="checked">N/A</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4 </option>
 				</select>
 				<br><br>
 				
 				<label for="Distance"><strong> Distance: </strong></label>
 				<select name="Distance" id="distance" >
-					<option value="" checked="checked">Choose...</option>
-					<option value = "short">Short</option>
-					<option value="medium">Medium</option>
-					<option value="long">Long</option>
-					<option value="extra_long"> Extra Long </option>
+					<option value="" checked="checked">N/A</option>
+					<option value = "short">Short (1-2)</option>
+					<option value="medium">Medium (3-6)</option>
+					<option value="long">Long (7-10)</option>
+					<option value="extra_long"> Extra Long (11+)</option>
 				</select>
 				<br><br>
 					
 				<label for="quarterNumber"><strong>Quarter Number: </strong></label>
-				<input type="radiogroup" name="Quarter Number" id="Quarter Number" size="10" />
+				<select name="quarterNumber" id="quarterNumber" >
+					<option value="" checked="checked">N/A</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4 </option>
+				</select>
 				<br/>
 				<br/>
 				
 				<label for="timeRemaining"><strong> Time Remaining: </strong></label>
-				<input type="text" name="timeRemaining" id="timeRemaining" size="10" />
+				<select name="timeRemaining" id="timeRemaining" >
+					<option value="" checked="checked">N/A</option>
+					<option value="4minutes">Fianl 4 minutes of qtr</option>
+					<option value="2minutes">Final 2 minutes of qtr</option>
+				</select>	
 				<br/>
 				<br/>
 				
 				<label for="timeOuts"><strong>Time Outs: </strong></label>
-				<textarea id="text" placeholder="" rows="1" cols="10"></textarea>	
-				<br/></br>
+				<select name="timeouts" id="timeouts" >
+					<option value="" checked="checked">N/A</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select>	
+				<br/></br>				
 				
 				<div class="hitsubmit">
 					<input type="submit" name="confirm" id="confirm" value="Confirm"/>
@@ -111,14 +130,14 @@ The div to be able to place our contents with respect to the CSS code
 			<script>
 				
 			  //Key which allows access to the various functions of Firebase without needing user account and authentication
-			  var config = {
+			  /*var config = {
 				"apiKey": "AIzaSyAGyoxhLyCEyJo1Km37xvwKyAyQiR00Z_g",
 				"databaseURL": "https://football-playcaller-f3ade.firebaseio.com",
 				"storageBucket": "football-playcaller-f3ade.appspot.com",
 				"authDomain": "football-playcaller-f3ade.firebaseapp.com",
 				"projectId": "1:180449355890:web:a3b76fdf536458dab97aeb"
 			  };
-			  firebase.initializeApp(config);
+			  firebase.initializeApp(config);*/
 				//console.log(firebase);
 				
 			</script>	
@@ -127,33 +146,33 @@ The div to be able to place our contents with respect to the CSS code
 			
 			<fieldset>
 				<legend><strong>Run</strong></legend>
-				  <label for="rplays" id="awayS">Total Plays:</label><br>
+				  <label for="rplays" id="totPR">Total Plays:</label><br>
 				  
-				  <label for="raverageYards" id="awayT">Average Yards:</label><br>
+				  <label for="raverageYards" id="avgYR">Average Yards:</label><br>
 				  
-				  <label for="rnumbers" id="gameI">Numbers:</label><br>
+				  <label for="rnumbers" id="numR">Numbers:</label><br>
 				  
-				  <label for="rconversions" id="gameU">Conversion %:</label><br>
+				  <label for="rconversions" id="convR">Conversion %:</label><br>
 				  
-				  <label for="rloss" id="homeS">Loss of yards %:</label><br>
+				  <label for="rloss" id="lossyards">Loss of yards %:</label><br>
 				  
 			</fieldset>
 			<br>
 			<fieldset>
 				<legend><strong>Pass</strong></legend>
-				  <label for="pplays" id="homeT">Total Plays:</label><br>
+				  <label for="pplays" id="totPP">Total Plays:</label><br>
 				  
-				  <label for="pcompletions" id="seaS">Completion %:</label><br>
+				  <label for="pcompletions" id="comp">Completion %:</label><br>
 				  
-				  <label for="pint" id="stateG">Interceptions:</label><br>
+				  <label for="pint" id="inter">Interceptions:</label><br>
 				  
-				  <label for="psack" id="typE">Sacks:</label><br>
+				  <label for="psack" id="sack">Sacks:</label><br>
 				  
-				  <label for="paverageYards" id="weeK">Average Yards:</label><br>
+				  <label for="paverageYards" id="avgYP">Average Yards:</label><br>
 				  
-				  <label for="pnumbers">Numbers:</label><br>
+				  <label for="pnumbers" id="numP">Numbers:</label><br>
 				  
-				  <label for="pconversions">Conversion %:</label><br>
+				  <label for="pconversions" id="convP">Conversion %:</label><br>
 				  
 			</fieldset>
 			<br>
@@ -164,18 +183,18 @@ The div to be able to place our contents with respect to the CSS code
 				</tr>
 				<tr>
 					<td>Run</td>
-					<td></td>
+					<td id="avgrun"></td>
 				</tr>
 				
 				<tr>
 					<td>Pass</td>
-					<td></td>
+					<td id="avgpass"></td>
 		   
 				</tr>
 		 
 		 
 			</table>
-			<h3 id="head1">RESULTS</h3>
+			<!--<h3 id="head1">RESULTS</h3>-->
 			
 			<h6 id="result"></h6>
 		</div>
