@@ -62,8 +62,25 @@ The div to be able to place our contents with respect to the CSS code
 				<br/>
 				<br/>
 				
-				<label for="scoreDifferential"><strong>Score Differential: </strong></label>
-				<input type="text" name="scoreDifferential" id="scoreDifferential" size="25" /></span>
+				<label for="scoreDiff"><strong>Score Differential: </strong></label>
+				<select name="scoreDiff" id="scoreDiff" >
+					<option value="na" selected>N/A</option>
+					<option value="tied">Tied</option>
+					<option value="winning">Winning</option>
+					<option value="losing">Losing</option>
+				</select>
+				
+				<label for="scoreDiffNum"><strong>By: </strong></label>
+				<select name="scoreDiffNum" id="scoreDiffNum" disabled>
+					<option value="na" selected></option>
+					<option value="1">1 - 3</option>
+					<option value="2">4 - 6</option>
+					<option value="3">7 - 8</option>
+					<option value="4">9 - 13</option>
+					<option value="5">14 - 16</option>
+					<option value="6">17 - 20</option>
+					<option value="7">21 and more</option>
+				</select>				
 				<br><br>		
 				
 				<label for="down"><strong>Down: </strong></label>

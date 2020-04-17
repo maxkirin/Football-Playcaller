@@ -8,9 +8,22 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var db = firebase.database();					//up to football-playcaller-f3ade
+var ref = db.ref();							//up to parent node that we need access to
+
 function submitData(e){
-e.preventDefault();
-document.getElementById('container2').style.visibility = 'visible';		//container 2 is taken from enterscores.html
+	e.preventDefault();
+	document.getElementById('container2').style.visibility = 'visible';		//container 2 is taken from enterscores.html
+
+	//teamTitle, fieldPosition, scoreDifferential, down, distance, quarterNumber, timeRemaining, timeouts
+	var fieldPosition = document.getElementById('fieldPosition').value;
+	var scoreDiff = document.getElementById('scoreDiff').value;
+	var scoreDiffNum = document.getElementById('scoreDiffNum').value;
+	var down = document.getElementById('down').value;
+	var distance = document.getElementById('distance').value;
+	var quarterNumber = document.getElementById('quarterNumber').value;
+	var timeRemaining = document.getElementById('timeRemaining').value;
+	var timeouts = document.getElementById('timeouts').value;
 }
 
 const form = document.getElementById('situations');						//div:container 1; form: situations
@@ -20,6 +33,19 @@ form.addEventListener('submit', submitData);				//when confirm clicked show cont
 var buttonw = document.getElementById("write");
 var buttond = document.getElementById("data");
 var head1 = document.getElementById("head1");
+
+const scoreDiffBox = document.getElementById('scoreDiff');
+scoreDiffBox.addEventListener('change', (event) => {
+	const scoreDiffNumBox = document.getElementById('scoreDiffNum');
+	//two options that require second box
+	if (event.target.value === "winning" || event.target.value === "losing"){
+		scoreDiffNumBox.disabled = false;
+	}
+	else{
+		scoreDiffNumBox.value = "na";
+		scoreDiffNumBox.disabled = true;		
+	}
+})
 
 function ShowData(){
 	//var input = text.value;
