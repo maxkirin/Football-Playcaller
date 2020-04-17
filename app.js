@@ -8,22 +8,46 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var db = firebase.database();					//up to football-playcaller-f3ade
+var ref = db.ref();			//up to parent node that we need access to
+
 function submitData(e){
 	e.preventDefault();
 	document.getElementById('container2').style.visibility = 'visible';		//container 2 is taken from enterscores.html
 
 	//teamTitle, fieldPosition, scoreDifferential, down, distance, quarterNumber, timeRemaining, timeouts
-	console.log(document.getElementById('fieldPosition').value);
-	console.log(document.getElementById('scoreDifferential').value);
-	console.log(document.getElementById('down').value);
-	console.log(document.getElementById('distance').value);
-	console.log(document.getElementById('quarterNumber').value);
-	console.log(document.getElementById('timeRemaining').value);
-	console.log(document.getElementById('timeouts').value);
+	var fieldPosition = document.getElementById('fieldPosition').value;
+	var scoreDiff = document.getElementById('scoreDiff').value;
+	var scoreDiffNum = document.getElementById('scoreDiffNum').value;
+	var down = document.getElementById('down').value;
+	var distance = document.getElementById('distance').value;
+	var quarterNumber = document.getElementById('quarterNumber').value;
+	var timeRemaining = document.getElementById('timeRemaining').value;
+	var timeouts = document.getElementById('timeouts').value;
+	
+	//from line 12
+	//var testref = ref;
+	//if (fieldPosition != ""){
+	//	var testref = searchByFieldPosition();
+	//}
+	
 }
 
 const form = document.getElementById('situations');						//div:container 1; form: situations
 form.addEventListener('submit', submitData);				//when confirm clicked show container 2
+
+const scoreDiffBox = document.getElementById('scoreDiff');
+scoreDiffBox.addEventListener('change', (event) => {
+	const scoreDiffNumBox = document.getElementById('scoreDiffNum');
+	//two options that require second box
+	if (event.target.value === "winning" || event.target.value === "losing"){
+		scoreDiffNumBox.disabled = false;
+	}
+	else{
+		scoreDiffNumBox.value = "na";
+		scoreDiffNumBox.disabled = true;		
+	}
+})
 
 var text = document.getElementById("text");
 var buttonw = document.getElementById("write");
@@ -32,8 +56,7 @@ var head1 = document.getElementById("head1");
 
 function ShowData(){
 	//var input = text.value;
-	var db = firebase.database();					//up to football-playcaller-f3ade
-	var ref = db.ref();			//up to parent node that we need access to
+	//
 	
 	//ref.orderByValue() - will print the whole table and the number nodes
 	//the way it is now will display the away score in order; only showing the highest value
@@ -91,4 +114,6 @@ function WriteData(){		//when send clicked creates new child
     ref.child("TEST").set("TESTDATA");
     console.log("Data written.")
   }
+
+
 
