@@ -50,7 +50,7 @@ The div to be able to place our contents with respect to the CSS code
 				
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
 				<select name="fieldPosition" id="fieldPosition" >
-					<option value="" checked="checked">N/A</option>
+					<option value="na" selected>N/A</option>
 					<option value="1">Backed Up (own goal line - -10)</option>
 					<option value="2">-10 - -25</option>
 					<option value="3">-25 - 50</option>
@@ -62,13 +62,30 @@ The div to be able to place our contents with respect to the CSS code
 				<br/>
 				<br/>
 				
-				<label for="scoreDifferential"><strong>Score Differential: </strong></label>
-				<input type="text" name="scoreDifferential" id="scoreDifferential" size="25" /></span>
+				<label for="scoreDiff"><strong>Score Differential: </strong></label>
+				<select name="scoreDiff" id="scoreDiff" >
+					<option value="na" selected>N/A</option>
+					<option value="tied">Tied</option>
+					<option value="winning">Winning</option>
+					<option value="losing">Losing</option>
+				</select>
+				
+				<label for="scoreDiffNum"><strong>By: </strong></label>
+				<select name="scoreDiffNum" id="scoreDiffNum" disabled>
+					<option value="na" selected></option>
+					<option value="1">1 - 3</option>
+					<option value="2">4 - 6</option>
+					<option value="3">7 - 8</option>
+					<option value="4">9 - 13</option>
+					<option value="5">14 - 16</option>
+					<option value="6">17 - 20</option>
+					<option value="7">21 and more</option>
+				</select>				
 				<br><br>		
 				
 				<label for="down"><strong>Down: </strong></label>
 				<select name="down" id="down" >
-					<option value="" checked="checked">N/A</option>
+					<option value="na" selected>N/A</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -78,7 +95,7 @@ The div to be able to place our contents with respect to the CSS code
 				
 				<label for="Distance"><strong> Distance: </strong></label>
 				<select name="Distance" id="distance" >
-					<option value="" checked="checked">N/A</option>
+					<option value="na" selected>N/A</option>
 					<option value = "short">Short (1-2)</option>
 					<option value="medium">Medium (3-6)</option>
 					<option value="long">Long (7-10)</option>
@@ -88,7 +105,7 @@ The div to be able to place our contents with respect to the CSS code
 					
 				<label for="quarterNumber"><strong>Quarter Number: </strong></label>
 				<select name="quarterNumber" id="quarterNumber" >
-					<option value="" checked="checked">N/A</option>
+					<option value="na" selected>N/A</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -99,7 +116,7 @@ The div to be able to place our contents with respect to the CSS code
 				
 				<label for="timeRemaining"><strong> Time Remaining: </strong></label>
 				<select name="timeRemaining" id="timeRemaining" >
-					<option value="" checked="checked">N/A</option>
+					<option value="na" selected>N/A</option>
 					<option value="4minutes">Fianl 4 minutes of qtr</option>
 					<option value="2minutes">Final 2 minutes of qtr</option>
 				</select>	
@@ -127,22 +144,10 @@ The div to be able to place our contents with respect to the CSS code
 			
 	
 		<div id="container2" class="container2">
-			<script>
-				
-			  //Key which allows access to the various functions of Firebase without needing user account and authentication
-			  //var config = {
-				//"apiKey": "AIzaSyAGyoxhLyCEyJo1Km37xvwKyAyQiR00Z_g",
-				//"databaseURL": "https://football-playcaller-f3ade.firebaseio.com",
-				//"storageBucket": "football-playcaller-f3ade.appspot.com",
-				//"authDomain": "football-playcaller-f3ade.firebaseapp.com",
-				//"projectId": "1:180449355890:web:a3b76fdf536458dab97aeb"
-			  //};
-			  //firebase.initializeApp(config);
-				//console.log(firebase);
-				
-			</script>	
 			<button type="buttonw" id="write" onclick="WriteData()">Send data to database</button>
 			<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>
+			
+			<h3 id="head1" align="center">RESULTS</h3>
 			
 			<fieldset>
 				<legend><strong>Run</strong></legend>
@@ -194,7 +199,6 @@ The div to be able to place our contents with respect to the CSS code
 		 
 		 
 			</table>
-			<h3 id="head1">RESULTS</h3>
 			
 			<h6 id="result"></h6>
 		</div>
