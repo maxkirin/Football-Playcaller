@@ -60,7 +60,7 @@ legend
 }
 
 /*certain information that we print we want to appear red, to show urgency to the user*/
-#bookinfo
+#playinfo
 {
 	color:red;
 	font-size:10pt;

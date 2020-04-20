@@ -8,8 +8,21 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var db = firebase.database();					//up to football-playcaller-f3ade
-var ref = db.ref();							//up to parent node that we need access to
+const scoreDiffBox = document.getElementById('scoreDiff');
+scoreDiffBox.addEventListener('change', (event) => {
+	const scoreDiffNumBox = document.getElementById('scoreDiffNum');
+	//two options that require second box
+	if (event.target.value === "winning" || event.target.value === "losing"){
+		scoreDiffNumBox.disabled = false;
+	}
+	else{
+		scoreDiffNumBox.value = "na";
+		scoreDiffNumBox.disabled = true;		
+	}
+})
+
+const form = document.getElementById('situations');						//div:container 1; form: situations
+form.addEventListener('submit', submitData);				//when confirm clicked show container 2
 
 function submitData(e){
 	e.preventDefault();
@@ -26,26 +39,11 @@ function submitData(e){
 	var timeouts = document.getElementById('timeouts').value;
 }
 
-const form = document.getElementById('situations');						//div:container 1; form: situations
-form.addEventListener('submit', submitData);				//when confirm clicked show container 2
 
 //var text = document.getElementById("txt");
-var buttonw = document.getElementById("write");
 var buttond = document.getElementById("data");
 var head1 = document.getElementById("head1");
 
-const scoreDiffBox = document.getElementById('scoreDiff');
-scoreDiffBox.addEventListener('change', (event) => {
-	const scoreDiffNumBox = document.getElementById('scoreDiffNum');
-	//two options that require second box
-	if (event.target.value === "winning" || event.target.value === "losing"){
-		scoreDiffNumBox.disabled = false;
-	}
-	else{
-		scoreDiffNumBox.value = "na";
-		scoreDiffNumBox.disabled = true;		
-	}
-})
 
 function ShowData(){
 	//var input = text.value;
@@ -57,6 +55,7 @@ function ShowData(){
 	testref.on("value", snap=>{		
 		count = 0;
 		snap.forEach(function(childsnap) {
+			//adds all values of "AbsScoreDiff"
 			count = count + (childsnap.child("AbsScoreDiff").val());
 			console.log(childsnap.child("AbsScoreDiff").val());
 		});
