@@ -12,8 +12,8 @@ This page displays FAQs so the user can learn about how to use the system is som
 		<title>Help</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="CTE" />
-		<link rel="stylesheet" type="text/css" href="cte.css">
-		<link rel="icon" href="book.jpg" >
+		<link rel="stylesheet" type="text/css" href="fpstyle.css">
+		<link rel="icon" href="ball.jpg" >
 		<link href="https://fonts.googleapis.com/css?family=cookie" rel="stylesheet">
 	</head>
 	<body>
@@ -30,17 +30,19 @@ This page displays FAQs so the user can learn about how to use the system is som
 		</div>
 	</div>
 		
-		<div class="new">
+		
 		<div class="wrapper1">
-
+					
 			<h1> FAQs </h1>
 					<br/>
+			
+			<div class="container1">
 			<!--List of some FAQs, with links to point users in the right direction-->
 			<ol>
 				<li>
 					<h2> How do I add new data to test? </h2>
 
-					<p> You need to click <a href="addBook.html"> here</a> 
+					<p> You need to click <a href="enterScores.html" color="white"> here</a> 
 					and fill all fields so that you can see the results predicted
 					 </p>
 				</li>
@@ -68,10 +70,14 @@ This page displays FAQs so the user can learn about how to use the system is som
 					<h2>How is the choice sent onto the field?</h2>
 
 					<p> The coach or the person in charge of the site will input the data they have access to and it will filter through the database to retrieve the best outcome.
-</p>
+					</p>
 				</li>
+				</ol>
+				</div>
 				
-				<br><br><br><br><br><br><br><br><br><br><br><br>
+				<div class="container3">
+				<ol start="6"> 
+
 				<li>
 					<h2>Who decides which play to run? </h2>
 
@@ -95,21 +101,21 @@ This page displays FAQs so the user can learn about how to use the system is som
 
 					<p>...........................</p>
 				</li>
-		
-
-
-				
+						
 				<br>
-				<form method="POST" action="profile.php">
-					<input type="submit" name="home" id="home" value="Return to Home">
-				</form>
+				
+				
 				<br>
 
 
 			</ol>
+			</div>
 		
-		</div>
-		</div>
+		
+	</div>
+	<form method="POST" action="enterScores.html">
+					<input type="submit" name="home" id="home" value="Return to Home">
+				</form>
 				
 	</body>
 </html>
