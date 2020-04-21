@@ -18,9 +18,7 @@ used on all of our pages to define our div tags, where we print all of our text
 	font-size:14pt;
 	color: white;
 	position:relative;
-	
 	border-radius: 20px;
-	
 	opacity:.8;
 
 }
@@ -34,14 +32,14 @@ used on all of our pages to define our div tags, where we print all of our text
 /*
 formats our buttons, especially useful when used in the tables
 */
-button
+/*button
 {
 	color:#AC3054;
 	height:50px;
 	width:50px;
 	position:relative;
 
-}
+}*/
 
 p.span
 {
@@ -56,7 +54,11 @@ legend
 	margin-right:50%;
 	
 }
-
+select
+{
+	display:inline-block;
+	position:relative;
+}
 /*certain information that we print we want to appear red, to show urgency to the user*/
 #bookinfo
 {
@@ -69,7 +71,6 @@ legend
 body
 {
 	background-size: 1000px 1000px;
-	
 	font-family:courier,arial,helvetica;
 	background-color: #1f7a1f;
 	position:relative;
@@ -192,30 +193,49 @@ input{
 	border-color:white;
 	border-radius:2px;
 	border-style:solid;
-	width:43%;
-	height:80%;
+	width:44%;
+	height:60%;
 	float:left;
 	opacity:0.9;
 	font-family:courier,arial,helvetica;
 	padding:10px;
 	
 }
-	
+
+
 .container2
 {
 	margin-right:40px;
-	border-color:white;
+	border-color:black;
 	border-radius:2px;
 	border-style:solid;
 	width:43%;
-	height:80%;
+	height:70%;
 	float:right;
 	display:inline-block;	
 	font-family:courier,arial,helvetica;
 	font-weight:bold;	
-	text-align:center;
+	text-align:left;
 	padding: 10px;
 	visibility: hidden;
+	
+}
+	
+.container3
+{
+	margin-right:40px;	
+	border-color:white;
+	border-radius:2px;
+	border-style:solid;
+	width:43%;
+	height:60%;
+	float:right;
+	display:inline-block;	
+	font-family:courier,arial,helvetica;
+	font-weight:bold;	
+	text-align:left;
+	padding: 10px;
+	position:relative;
 }
 
 .hitsubmit
@@ -234,6 +254,7 @@ table {
   font-family:courier,arial,helvetica;
   padding:8px;
   margin: auto;
+  color:white;
 }
 
 td, th {
@@ -252,4 +273,18 @@ th{
 #home
 {
 	text-align:center;
+}
+
+.helpDiv
+{	
+    border-radius:1px;
+	border-color:white;
+	border: 1px solid #dddddd;
+	border-radius:4px;
+	height:70%;
+	width:60%;
+	padding:20px;
+	margin-left:10%;
+	text-align:center;
+	
 }
