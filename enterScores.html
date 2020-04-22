@@ -32,9 +32,10 @@ The div to be able to place our contents with respect to the CSS code
 		
 		
 	<div class='wrapper1'>
-	<form method="POST" action="help.html">
-					<input style= "margin-top: 10px; margin-left:10px" type="submit" name="home" id="home" value="Help Guide">
-				</form>
+	
+	<!--<form method="POST" action="help.html">
+			<input style= "margin-top: 10px; margin-left:10px" type="submit" name="home" id="home" value="Help Guide">
+	</form>-->
 	  <h1>~~Play and Score Simulation~~</h1>
 	  
 	  <br>
@@ -47,7 +48,11 @@ The div to be able to place our contents with respect to the CSS code
 
 		<div class="container1">
 			<form id="situations" action="/action_page.php" method="post">		
-				<p id='playinfo'> ***Please fill in all information. Thank you!! ***</p>
+				<p id='playinfo'> ***Please fill in all information. Thank you!! ***
+					<a href="help.html">
+						<img src="faq.png" alt = "FAQ" style="float:right;width:40px;height:40px">
+					</a>
+				</p>
 				
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
 				<select name="fieldPosition" id="fieldPosition" >

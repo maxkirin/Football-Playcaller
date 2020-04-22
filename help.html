@@ -12,7 +12,8 @@ This page displays FAQs so the user can learn about how to use the system is som
 		<title>Help</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="CTE" />
-		<link rel="stylesheet" type="text/css" href="cte.css">
+		<link rel="stylesheet" type="text/css" href="fpstyle.css">
+		<link rel="icon" href="ball.jpg" >
 		<link href="https://fonts.googleapis.com/css?family=cookie" rel="stylesheet">
 	</head>
 	<body>
@@ -29,60 +30,61 @@ This page displays FAQs so the user can learn about how to use the system is som
 		</div>
 	</div>
 		
-		<div class="new">
+		
 		<div class="wrapper1">
-
+					
 			<h1> FAQs </h1>
 					<br/>
+			
+			<div class="container3" >
+			
 			<!--List of some FAQs, with links to point users in the right direction-->
 			<ol>
 				<li>
 					<h2> How do I add new data to test? </h2>
 
-					<p> You need to click <a href="addPlay.html"> here</a> 
-					and fill all fields so that you can see the results predicted
+					<p> You need to click <a href="enterScores.html" color="white"> here</a> 
+					and fill all fields so that you can see the results predicted or contact Admin.
 					 </p>
 				</li>
 
 				<li>
 					<h2> Can I see past results? </h2>
 
-					<p> Past results can be seen during a session. Once logged out of the website results are deleted.
-					<strong> NOT </strong> allowed to save results</p>
+					<p> Only while in session. Once logged out the results are deleted. Results 
+					<strong> CAN NOT </strong>be saved.</p>
 				</li>
 				
 				<li>
 					<h2>How is the play modified? </h2>
 
-					<p> The play is modified by the past results in the database.</p>
+					<p> The play is modified by changing input that was selected.</p>
 				</li>
 				
 				<li>
 					<h2>How are the plays coded?</h2>
 
-					<p> The plays are coded using ...</p>
+					<p> The plays are coded using RStudio.</p>
 				</li>
 	
+				</ol>
+				</div>
+				
+				<div class="container4">
+				<ol start="5"> 
 				<li>
 					<h2>How is the choice sent onto the field?</h2>
 
 					<p> The coach or the person in charge of the site will input the data they have access to and it will filter through the database to retrieve the best outcome.
-</p>
+					</p>
 				</li>
 				
-				<br><br><br><br><br><br><br><br><br><br><br><br>
 				<li>
 					<h2>Who decides which play to run? </h2>
 
 					<p>The coach or the person in charge of maintaining the play decides which play to run. </p>
 				</li>
-	
-	<li>
-					<h2>Who decides which play to run? </h2>
-
-					<p>The coach or the person in charge of maintaining the play decides which play to run. </p>
-				</li>
-		
+			
 				<li>
 					<h2>Is my data Secure?</h2>
 
@@ -90,25 +92,27 @@ This page displays FAQs so the user can learn about how to use the system is som
 				</li>
 
 <li>
-					<h2>Why does my data display</h2>
+					<h2>What does my data display?</h2>
 
-					<p>...........................</p>
+					<p>Depending on your selection it will return the factors used to calculate the 
+						average of Runs and Passes.</p>
+					<form method="POST" action="enterScores.html">
+						<input type="submit" name="home" id="home" value="Return to Home" class="center">
+					</form>
 				</li>
-		
-
-
-				
+						
 				<br>
-				<form method="POST" action="enterScores.html">
-					<input type="submit" name="home" id="home" value="Return to Home">
-				</form>
+				
+				
 				<br>
 
 
 			</ol>
+			</div>
 		
-		</div>
-		</div>
+		
+	</div>
+				
 				
 	</body>
 </html>
