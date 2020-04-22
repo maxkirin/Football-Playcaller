@@ -13,12 +13,12 @@ var db = firebase.database();					//up to football-playcaller-f3ade
 var ref = db.ref();	
 ref = ref.orderByKey().once("value", snap=>{		
 	console.log("data grabbed");
-	var count = 0;
-		snap.forEach(function(childsnap) {
-			count = count + 1;
-			plays.push(childsnap.val())
-		});
-		console.log(count)
+	snap.forEach(function(childsnap) {
+		plays.push(childsnap.val())
+	});
+	var formButton = document.getElementById("confirm");
+	formButton.disabled = false;
+	formButton.value = "Confirm";
 });
 
 function submitData(e){
