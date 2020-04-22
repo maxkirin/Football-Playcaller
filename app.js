@@ -8,8 +8,18 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var plays = [];
 var db = firebase.database();					//up to football-playcaller-f3ade
-var ref = db.ref();			//up to parent node that we need access to
+var ref = db.ref();	
+ref = ref.orderByKey().once("value", snap=>{		
+	console.log("data grabbed");
+	var count = 0;
+		snap.forEach(function(childsnap) {
+			count = count + 1;
+			plays.push(childsnap.val())
+		});
+		console.log(count)
+});
 
 function submitData(e){
 	e.preventDefault();
@@ -25,11 +35,38 @@ function submitData(e){
 	var timeRemaining = document.getElementById('timeRemaining').value;
 	var timeouts = document.getElementById('timeouts').value;
 	
-	//from line 12
-	//var testref = ref;
-	//if (fieldPosition != ""){
-	//	var testref = searchByFieldPosition();
-	//}
+	//from line 12, creating deep copy of array
+	var searchplays = [...plays];
+	console.log(fieldPosition);
+	
+	//boolean defaults
+	//will be adjusted based on user selections
+	var fieldPosTest = true;
+	var scoreDiffTest = true;
+	var downTest = true;
+	var distTest = true;
+	var qtrTest = true;
+	var timeRemTest = true;
+	var timeoutTest = true;
+	
+	//find which values have been selected to be searched
+	if (fieldPosition != "na"){
+		searchplays = searchByFieldPosition(fieldPosition, searchplays);
+	}
+	
+	if (down != "na"){
+		searchplays = searchByDown(down, searchplays);
+	}
+	
+	for (var i = 0; i < searchplays.length; i++){
+		console.log(searchplays[i].yrdline100);
+	}
+	console.log(searchplays.length);
+	//console.log(plays[0].val());
+	
+	//print to screen when finished
+	//#awayS = id we are appending to
+	$("#awayS").append("\tDONE!!!!!!!!!!!!!!");
 	
 }
 
@@ -61,7 +98,7 @@ function ShowData(){
 	//ref.orderByValue() - will print the whole table and the number nodes
 	//the way it is now will display the away score in order; only showing the highest value
 	//child_added event to retrieve list of items
-	var testref = ref.orderByChild("AbsScoreDiff").equalTo(0);
+	var testref = ref.orderByChild("AbsScoreDiff").startAt(1).endAt(3);
 	testref.on("value", snap=>{		
 		var count = 0;
 		snap.forEach(function(childsnap) {
@@ -70,39 +107,73 @@ function ShowData(){
 		});
 		
 		console.log(count);
-			
-		//var testkey = snap.key;
-
-		//console.log(testkey);
-		//console.log(snap.child().val());
-		//console.log(snap.val());
-		//console.log(snap.val().key);
-													
-													
-		//var away_score = snap.child("away_score").val();		//each value of child key stored
-		//var away_team = snap.child("away_team").val();
-		//var game_id = snap.child("game_id").val();
-		//var game_url = snap.child("game_url").val();
-		//var home_score = snap.child("home_score").val();
-		//var home_team = snap.child("home_team").val();
-		//var season = snap.child("season").val();
-		//var state_of_game = snap.child("state_of_game").val();
-		//var type = snap.child("type").val();
-		//var week = snap.child("week").val();
-		
-		
-		//$("#awayS").append("\t"+away_score);
-		//$("#awayT").append("\t"+away_team);
-		//$("#gameI").append("\t"+game_id);
-		//$("#gameU").append("\t"+game_url);
-		//$("#homeS").append("\t"+home_score);
-		//$("#homeT").append("\t"+home_team);
-		//$("#seaS").append("\t"+season);
-		//$("#stateG").append("\t"+state_of_game);
-		//$("#typE").append("\t"+type);
-		//$("#weeK").append("\t"+week);
 				
 	});
+}	
+
+//searching for yrdline100
+//possible values are
+//fp = 1 -> 0 - 10
+//2 -> 10 - 25
+//3 -> 25 - 50
+//4 -> 50 - 75
+//5 -> 75 - 90
+//6 -> 90 - 97
+//7 -> 97 - 100
+function searchByFieldPosition(fp, arr){
+	var begin;
+	var end;
+	if (fp == 1){
+		begin = 0;
+		end = 10;
+	}
+	else if (fp == 2){
+		begin = 10;
+		end = 25;
+	}
+	else if (fp == 3){
+		begin = 25;
+		end = 50;
+	}
+	else if (fp == 4){
+		begin = 50;
+		end = 75;
+	}
+	else if (fp == 5){
+		begin = 75;
+		end = 90;
+	}
+	else if (fp == 6){
+		begin = 90;
+		end = 97;
+	}
+	else {
+		begin = 97;
+		end = 100;
+	}
+	console.log(begin)
+	console.log(end);
+
+	for (var i = 0; i < arr.length; i++){
+		if (arr[i].yrdline100 < begin || arr[i].yrdline100 > end){
+			arr.splice(i, 1);
+			i--;
+		}
+	}
+	
+	return arr;
+}	
+
+//searching for down
+//value represents nuber of down
+function searchByDown(d, arr){
+	for (var i = 0; i < arr.length; i++){
+		if (arr[i].down != d){
+			arr.splice(i, 1);
+			i--;
+		}
+	}
+	return arr;
 }	
 
 function WriteData(){		//when send clicked creates new child
