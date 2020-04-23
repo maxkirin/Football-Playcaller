@@ -51,30 +51,82 @@ function ShowData(){
 	var ref = db.ref();							//up to parent node that we need access to
 	var count;
 	//Displays how many score differentials are zero
-	var testref = ref.orderByChild("AbsScoreDiff").equalTo(59);
+	var testref = ref.orderByChild("AbsScoreDiff").equalTo(7);
 	testref.on("value", snap=>{		
 		count = 0;
+		down = 0;
+		downtotal = 0;
+		interception = 0;
+		passplays = 0;
+		passcomp = 0;
+		passgain = 0;
+		passattempt = 0;
+		passconv = 0;
+		runplays = 0;
+		sacks = 0;
 		snap.forEach(function(childsnap) {
 			//adds all values of "AbsScoreDiff"
 			count = count + (childsnap.child("AbsScoreDiff").val());
-			console.log(childsnap.child("AbsScoreDiff").val());
+			//console.log(childsnap.child("AbsScoreDiff").val());
+			downtotal = downtotal + (childsnap.child("down").val());
+			interception = interception + (childsnap.child("InterceptionThrown").val());
+			sacks = sacks + (childsnap.child("Sack").val());
+			if(childsnap.child("down").val()===3)
+			{
+				down = down + 1;  //downs == 3
+				
+			}
+			if (childsnap.child("play_type").val()==="Pass")
+			{
+				passplays = passplays + 1;		//run play
+				
+				if (childsnap.child("PassOutcome").val()==="Complete")
+				{
+					passcomp = passcomp + 1;
+					passgain = passgain + (childsnap.child("Yards_Gained").val());
+					passattempt = passattempt + (childsnap.child("PassAttempt").val());
+					passconv = passconv + (childsnap.child("two_point_conversion_prob").val());
+					
+				}
+			}
+			
+			if (childsnap.child("play_type").val()==="Run")
+			{
+				runplays = runplays + 1;
+				
+			}
 		});
 	
 		console.log(count);
+		console.log("downs val 3: "+down);
+		
+		
 		//Run
-		$("#totPR").append("\t"+count);
-		$("#avgYR").append("\t"+count);
+		console.log("run plays: "+runplays);
+		
+		$("#totPR").append("\t"+runplays);
+		$("#avgYR").append("\t"+downtotal);
 		$("#numR").append("\t"+count);
 		$("#convR").append("\t"+count+"%");
 		$("#lossyards").append("\t"+count+"%");
+		
 		//Pass
-		$("#totPP").append("\t"+count);
-		$("#comp").append("\t"+count+"%");
-		$("#inter").append("\t"+count);
-		$("#sack").append("\t"+count);
-		$("#avgYP").append("\t"+count);
-		$("#numP").append("\t"+count);
-		$("#convP").append("\t"+count+"%");
+		console.log("pass plays: "+passplays);
+		console.log("completed pass: "+passcomp);
+		console.log("completed yards gained: "+passgain);
+		console.log("completed attempt: "+passattempt);
+		console.log("interceptions: "+interception);
+		
+		$("#totPP").append("\t"+passplays);
+		var passcompperc = (passcomp / passplays) * 100;
+		$("#comp").append("\t"+passcompperc+"%");
+		$("#inter").append("\t"+interception);
+		$("#sack").append("\t"+sacks);
+		var avgyards = (passgain/passplays) * 100;
+		$("#avgYP").append("\t"+avgyards);
+		$("#numP").append("\t"+"what do you mean");
+		//var avgconv = (passconv/passplays) * 100;
+		$("#convP").append("\t"+passconv+"%");
 		//Table
 		var avgRun = count / 20;
 		$("#avgrun").append("\t"+avgRun);
