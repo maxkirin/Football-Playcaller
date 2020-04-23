@@ -1,22 +1,40 @@
+<!--
+This is a website designed by Diego Rojo, Max Kirin,
+Grace Imanariyo & Keila Cressman.
+This page is the front page that the user looks at to enter
+information which will be used to display results such as the
+run, play and results EPA.
+-->
+
 <!DOCTYPE html>
 
 <html lang="en">
-<!--
-The html title
--->
+
 <head>
+
     <title>Football Play Calling</title>
     <meta charset="utf-8" />
     <meta name="description" content="CTE" />
 	<link rel="stylesheet" type="text/css" href="fpstyle.css">
-
+	<!--
+	This is a section when we connect our web to our database (Firebase)
+	-->
+	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
 </head>
 <!--
 The div to be able to place our contents with respect to the CSS code
 -->
 <body>
+	
 	<div class = "section">
-			<h3> Welcome to FootBall Play Calling</h3>
+	
+	<!--
+	This is a the beginning of the webpage with a video and a title
+	-->
+
+			<h3> Football Play Calling</h3>
 			
 			<div class="video-container">
 				<div class="color-overlay"></div>
@@ -25,114 +43,224 @@ The div to be able to place our contents with respect to the CSS code
 				</video>
 			</div>
 		</div>
-
 		
-		
+	<!--
+	This is big container where the contents of the search and the contents
+	of the results will be displayed separately
+	-->
 	<div class='wrapper1'>
+	
+	<!--This is the Help Section that will help the user with FAQs-->
 	<form method="POST" action="help.html">
 					<input style= "margin-top: 10px; margin-left:10px" type="submit" name="home" id="home" value="Help Guide">
 				</form>
 	  <h1>~~Play and Score Simulation~~</h1>
 	  
-					<!-- 
-		The signup-submit.php
-		  -writes the account information to the database as a new user
-		  -displays a welcome page
-		  -provides a link that takes the user to the home page 
-		-->
-	<form method="GET" action="enterScoresResponse.php">
+	  <br>
+		
+	<!--
+	This is a container where the contents of the search and submit option is.
+	The user will enter data as necessary in the respective fields.
+	This includes the fieldPosition, the scoredifferential, down distance, 
+	quarter number, time Remaining, timeOuts. Once you hit Submit, the results will appear
+	in another div.
+	-->
 		<div class="container1">
-
-				<p id='trying'> ***Please fill in all information. Thank you!! ***</p>
-				
-				<span><label for="teamTitle"><strong>Team Title: </strong></label></span>
-				<input type="text" name="teamTitle" id="teamTitle" size="25" />
-				<br/>
-				<br/>
+			<form id="situations" method="post">		
+				<p id='bookinfo'> ***Fill in as many or as little fields as you want***</p>
 				
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
-				<input type="text" name="fieldPosition" id="fieldPosition" size="25" />
+				<select name="fieldPosition" id="fieldPosition" >
+					<option value="na" selected>N/A</option>
+					<option value="1">Backed Up (own goal line - -10)</option>
+					<option value="2">-10 - -25</option>
+					<option value="3">-25 - 50</option>
+					<option value="4">50 - +25 </option>
+					<option value="5">Red Zone (+25 - +10)</option>
+					<option value="6">+10 - +3</option>
+					<option value="7">Goal Line (+3 - goal line)</option>
+					<br/>
+				</select>				
 				<br/>
 				<br/>
-				
-				<label for="scoreDifferential"><strong>Score Differential: </strong></label>
-				<input type="text" name="scoreDifferential" id="scoreDifferential" size="25" /></span>
-				<br/><br/>		
+				<!--
+			This is a section where the user will be able to enter the score differentialthe
+			to indicate whether the team is winning, losing or if the game is tied.-->
+			
+				<label for="scoreDiff"><strong>Score Differential: </strong></label>
+				<select name="scoreDiff" id="scoreDiff" >
+					<option value="na" selected>N/A</option>
+					<option value="tied">Tied</option>
+					<option value="winning">Winning</option>
+					<option value="losing">Losing</option>
+				</select>
+				<!--
+			This is a section where the user will be able to enter the difference in scoreDiff
+			The user will be able to fill this section only when the game is not tied-->
+			
+				<label for="scoreDiffNum"><strong>By: </strong></label>
+				<select name="scoreDiffNum" id="scoreDiffNum" disabled>
+					<option value="na" selected></option>
+					<option value="1">1 - 3</option>
+					<option value="2">4 - 6</option>
+					<option value="3">7 - 8</option>
+					<option value="4">9 - 13</option>
+					<option value="5">14 - 16</option>
+					<option value="6">17 - 20</option>
+					<option value="7">21 and more</option>
+				</select>				
+				<br><br>		
 				
 				<label for="down"><strong>Down: </strong></label>
-				<form action="" method="get">
-				<select name="down" id="down">
-					<option value="Blank" checked="checked">Choose...</option>
+				<select name="down" id="down" >
+					<option value="na" selected>N/A</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-					<option value="4">4</option>
+					<option value="4">4 </option>
 				</select>
-				<!--<input type="submit" name="submitDown"/>-->
-				</form>
-				<br/><br/>
+				<br><br>
 				
-				
-				<label for="distance"><strong>Distance: </strong></label>
-				<form action="" method="get">
-				<select name="distance" id="distance">
-					<option value="Blank" checked="checked">Choose...</option>
-					<option value="Short">Short</option>
-					<option value="Medium">Medium</option>
-					<option value="Long">Long</option>
-					<option value="extraLong">Extra Long</option>
+				<label for="Distance"><strong> Distance: </strong></label>
+				<select name="Distance" id="distance" >
+					<option value="na" selected>N/A</option>
+					<option value = "short">Short (1-2)</option>
+					<option value="medium">Medium (3-6)</option>
+					<option value="long">Long (7-10)</option>
+					<option value="extra_long"> Extra Long (11+)</option>
 				</select>
-				
-				</form>
-				<br/><br/>
-				
-				
-				<?php
-				/*
-					if(isset($_POST['submit'])){
-					$down = $_POST['down'];  // Storing Selected Value In Variable
-					echo "You have selected :" .$selected_val;  // Displaying Selected Value
-					}*/
-				?>
-
-						
-						
-				<label for="quarterNumber"><strong> Quarter Number: </strong></label>
-				<input type="text" name="quarterNumber" id="quarterNumber" size="10" />
+				<br><br>
+					
+				<label for="quarterNumber"><strong>Quarter Number: </strong></label>
+				<select name="quarterNumber" id="quarterNumber" >
+					<option value="na" selected>N/A</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4 </option>
+				</select>
 				<br/>
 				<br/>
 				
 				<label for="timeRemaining"><strong> Time Remaining: </strong></label>
-				<input type="text" name="timeRemaining" id="timeRemaining" size="10" />
+				<select name="timeRemaining" id="timeRemaining" >
+					<option value="na" selected>N/A</option>
+					<option value="4minutes">Final 4 minutes of qtr</option>
+					<option value="2minutes">Final 2 minutes of qtr</option>
+				</select>	
 				<br/>
 				<br/>
 				
-				<label for="timeOuts"><strong>Time Outs: </strong></label>
-				<input type="text" name="timeOuts" id="timeOuts" size="10" />
+				<label for="timeouts"><strong>Time Outs: </strong></label>
+				<select name="timeouts" id="timeouts" >
+					<option value="" checked="checked">N/A</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select>	
+				<br/></br>
+					
 				<br/></br>
 				
 				<div class="hitsubmit">
 					<input type="submit" name="confirm" id="confirm" value="Confirm"/>
 					<br>
 				</div>
-								
 				</br>
 				</br>
-				</br></br>
-			
+			</form>
 		</div>
-		</form>
+		
+		<!--
+		This is a container that will display the results depending on the search as soon 
+		as the submit button of container1 is pressed. These fields will be filled
+		with information from the database-->
 	
-		<!--<form method="" action="trying.php">-->
-	
-		</br></br></br></br>
+		<!--
+		This is a section to display the results related to the Run call
+		These include the total plays, the average yards,numbers, conversion percentage--
+		and loss of yards-->
+		
+		<div id="container2" class="container2">
+			
+			<fieldset>
+				<legend><strong>Run</strong></legend>
+				  <label for="rplays" id="awayS">Total Plays:</label><br>
+				  
+				  <label for="raverageYards" id="awayT">Average Yards:</label><br>
+				  
+				  <label for="rnumbers" id="gameI">Numbers:</label><br>
+				  
+				  <label for="rconversions" id="gameU">Conversion %:</label><br>
+				  
+				  <label for="rloss" id="homeS">Loss of yards %:</label><br>
+				  
+			</fieldset>
+			<br>
+			<!--
+		This is a section to display the results related to the Pass call
+		this includes the total plays, completion, interceptions, 
+		sacks, Average yards, numbers, and conversion percentage-->
+			<fieldset>
+				<legend><strong>Pass</strong></legend>
+				  <label for="pplays" id="homeT">Total Plays:</label><br>
+				  
+				  <label for="pcompletions" id="seaS">Completion %:</label><br>
+				  
+				  <label for="pint" id="stateG">Interceptions:</label><br>
+				  
+				  <label for="psack" id="typE">Sacks:</label><br>
+				  
+				  <label for="paverageYards" id="weeK">Average Yards:</label><br>
+				  
+				  <label for="pnumbers">Numbers:</label><br>
+				  
+				  <label for="pconversions">Conversion %:</label>
+				  
+			</fieldset>
+			<br>
+			
+			<!--
+			The table to display the ranking and average EPA results
+			-->
+			<table>
+				<tr>
+					<th>Ranking</th>
+					<th>Average EPA</th>
+				</tr>
+				<tr>
+					<td>Run</td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td>Pass</td>
+					<td></td>		   
+				</tr>		 
+		 
+			</table>
+			
+			<!--
+			The user will be able to enter new data once they click enter new data
+			-->
+			
+			
+			<div class="hitsubmit">
+			<form method="POST" action="enterScores3.html">
+					<input style= "margin-top: 10px; margin-left:10px; border:5px solid black" type="submit" name="home" id="home" value="Enter New Data">
+			</form>
+		</div>
+				
+		</div>
+			</br></br>
 		</br>
-		</br></br>
 		</br>
-		</br>
+
 	</div>
 	
-	<script src="app.js"></script>
-	
+	<!--jquery needed so we can append to list instead of just one line-->
+	<script src = "https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script src="app3.js"></script>
+
 </body>
 </html>

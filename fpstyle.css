@@ -1,14 +1,15 @@
 /*
 Authors: Max Kirin, Diego Rojo, Keila Cressman & Grace Imanariyo
-cte.css
-This creates the style we want to implement on all of our webpages
-	-accessed by each page in header, or by using background.html
+fpstyle.css
+This creates the style we want to implement on our webpage frontpage 
+and our help page as well
 */ 
 
 
 /*
-used on all of our pages to define our div tags, where we print all of our text
-*/
+The wrapper is our main div on which contents and other divs are displayed. We set
+a background image of a football field*/
+
 .wrapper1{
 	background-image:url(field2.jpg);
 	background-repeat: repeat;
@@ -23,28 +24,15 @@ used on all of our pages to define our div tags, where we print all of our text
 
 }
 
+/*
+Setting the title in the wrapper div to be alligned in the center*/
+
 .wrapper1 h1, p
 {
 		text-align:center;
 }
 	
 
-/*
-formats our buttons, especially useful when used in the tables
-*/
-/*button
-{
-	color:#AC3054;
-	height:50px;
-	width:50px;
-	position:relative;
-
-}*/
-
-p.span
-{
-	text-align:center;
-}
 
 /*formatting all legends on our forms*/
 legend
@@ -81,9 +69,7 @@ body
 fieldset
 {
 	margin: auto;
-	/*padding:20px;*/
 	width:90%;
-	/*height:40%;*/
 	border:displayed;
 	border-color:white;
 	border-radius:1px;
@@ -91,15 +77,9 @@ fieldset
 	font-weight:bold;
 	font-family:courier,arial,helvetica;
 }
-/*balancing the tables on the screen*/
-/*table{
-text-align:center;
-padding-left:10%;
-padding-right:10%;
-position:relative;
-}*/
 
 /*formatting our lists, used on the help page*/
+
 li,ul{
 	padding-left:5px;
 	padding-right:5px;
@@ -107,6 +87,7 @@ li,ul{
 }
 
 /*our descriptions for textfields*/
+
 label
 {
 	position:relative;
@@ -114,6 +95,7 @@ label
 	padding-right:-20px;
 }
 /*all input fields are centered*/
+
 input{
 	position:auto;
 	
@@ -124,6 +106,8 @@ input{
 		text-align:center;
 		color:red;
 }
+
+/*This is where the main contents and the wrapper div will be placed*/
 
 .section
 {
@@ -138,32 +122,36 @@ input{
 	
 }
 
+/*The setting for the FootBall Play caller main title*/
+
 .section h3
 {
 	
 	text-align: center;
 	font-size: 6rem;
 	font-family: "cookie";
-	/*background:lightgreen;
-	padding:20px;
-	margin:15px;*/
 	z-index:1;
 	opacity:.9;
 
 }
+
+/*The setting behavior for the Results header to be displayed. The characteristics 
+displayed below*/
+
 .section h1
 {
 	
 	text-align: center;
 	font-size: 6rem;
 	font-family: "cookie";
-	/*background:lightgreen;*/
 	padding:15px;
 	margin:10px;
 	z-index:1;
 	opacity:.7;
 
 }
+
+/*The setting for the video to be properly aligned*/
 
 .video-container
 {
@@ -174,6 +162,7 @@ input{
 	height:80vh;
 }
 
+/*The setting to better set the colors of the website*/
 .color-overlay
 {
 	position:absolute;
@@ -187,6 +176,7 @@ input{
 }
 
 
+/*The characteristics of the div in which data will be entered*/
 .container1
 {
 	margin-left:30px;
@@ -194,23 +184,23 @@ input{
 	border-radius:2px;
 	border-style:solid;
 	width:44%;
-	height:60%;
+	height:72%;
 	float:left;
 	opacity:0.9;
 	font-family:courier,arial,helvetica;
 	padding:10px;
 	
 }
-
+/*The characteristics of the div in which data will be displayed*/
 
 .container2
 {
 	margin-right:40px;
-	border-color:black;
+	border-color:white;
 	border-radius:2px;
 	border-style:solid;
-	width:43%;
-	height:70%;
+	width:44%;
+	height:72%;
 	float:right;
 	display:inline-block;	
 	font-family:courier,arial,helvetica;
@@ -238,12 +228,18 @@ input{
 	position:relative;
 }
 
+/*The characteristics of the Submit button, for the text to be alligned
+in the middle*/
+
 .hitsubmit
 {
 	text-align:center;
 }
 
-table {
+/*These are the settings of the table to have specific size and 
+to be know where to be alligned*/
+
+table{
   border-collapse: collapse;
   border-radius:1px;
   border-color:white;
@@ -256,6 +252,8 @@ table {
   margin: auto;
   color:white;
 }
+
+/*These are the settings of the table headers and rows*/
 
 td, th {
   border: 1px solid #dddddd;
@@ -275,6 +273,8 @@ th{
 	text-align:center;
 }
 
+
+/*These are the settings for the help page*/
 .helpDiv
 {	
     border-radius:1px;
