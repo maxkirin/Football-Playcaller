@@ -21,6 +21,9 @@ ref = ref.orderByKey().once("value", snap=>{
 	formButton.value = "Confirm";
 });
 
+var test = "-1" < "+1";
+console.log(test);
+
 function submitData(e){
 	e.preventDefault();
 	document.getElementById('container2').style.visibility = 'visible';		//container 2 is taken from enterscores.html
@@ -37,7 +40,7 @@ function submitData(e){
 	
 	//from line 12, creating deep copy of array
 	var searchplays = [...plays];
-	console.log(fieldPosition);
+	console.log(searchplays.length);
 	
 	//boolean defaults
 	//will be adjusted based on user selections
@@ -54,12 +57,37 @@ function submitData(e){
 		searchplays = searchByFieldPosition(fieldPosition, searchplays);
 	}
 	
+	if (scoreDiff != "na"){
+		searchplays = searchByScoreDiff(scoreDiff, scoreDiffNum, searchplays);
+	}
+	
 	if (down != "na"){
 		searchplays = searchByDown(down, searchplays);
 	}
 	
+	if (distance != "na"){
+		searchplays = searchByDist(distance, searchplays);
+	}
+	
+	if (quarterNumber != "na"){
+		searchplays = searchByQtr(quarterNumber, searchplays);
+	}
+	
+	if (timeRemaining != "na"){
+		searchplays = searchByTime(timeRemaining, searchplays);
+	}
+	
+	if (timeouts != "na"){
+		searchplays = searchByTimeouts(timeouts, searchplays);
+	}
+	
+	
+	//may need to filter out plays with no down or get rid of certain
+	//play types as they may affect our calculations
+	
+	
 	for (var i = 0; i < searchplays.length; i++){
-		console.log(searchplays[i].yrdline100);
+		console.log(searchplays[i].posteam_timeouts_pre);
 	}
 	console.log(searchplays.length);
 	//console.log(plays[0].val());
@@ -151,12 +179,12 @@ function searchByFieldPosition(fp, arr){
 		begin = 97;
 		end = 100;
 	}
-	console.log(begin)
-	console.log(end);
 
 	for (var i = 0; i < arr.length; i++){
 		if (arr[i].yrdline100 < begin || arr[i].yrdline100 > end){
+			//remove element that doesn't match
 			arr.splice(i, 1);
+			//backtrack due to removing an element
 			i--;
 		}
 	}
@@ -164,17 +192,190 @@ function searchByFieldPosition(fp, arr){
 	return arr;
 }	
 
+//searching for ScoreDiff
+//using combination of scoreDiff type and num from form
+//tied = 0
+//winning = +
+//losing = -
+//for winning and losing, add on scoreDiff num range from form
+// 1 - 1-3
+// 2 - 4-6 
+// 3 - 7-8
+// 4 - 9-13
+// 5 - 14-16
+// 6 - 17-20
+// 7 - 21 and up
+function searchByScoreDiff(type, num, arr){
+	//if tied, look for scoreDiff == 0
+	if (type == "tied"){
+		for (var i = 0; i < arr.length; i++){
+			if (arr[i].ScoreDiff != 0){
+				//remove element that doesn't match
+				arr.splice(i, 1);
+				//backtrack due to removing an element
+				i--;
+			}
+		}
+	}
+	else{
+		var begin;
+		var end;
+		
+		//creating ranges for begin and end
+		//assuming winning is selected
+		if (num == 1){
+			begin = 1;
+			end = 3;
+		}
+		else if (num == 2){
+			begin = 4;
+			end = 6;
+		}
+		else if (num == 3){
+			begin = 7;
+			end = 8;
+		}
+		else if (num == 4){
+			begin = 9;
+			end = 13;
+		}
+		else if (num == 5){
+			begin = 14;
+			end = 16;
+		}
+		else if (num == 6){
+			begin = 17;
+			end = 20;
+		}
+		else if (num == 7){
+			//no end needed, but made very large
+			begin = 21;
+			end = 100;
+		}
+		else{
+			//no range specified, so either all pos or neg diffs
+			begin = 0;
+			end = 100;
+		}
+		
+		//if losing selected, much make negative, and switch begin and end
+		if(type == "losing"){
+			begin = begin*-1;
+			end = end*-1;
+			
+			var temp = begin;
+			begin = end;
+			end = temp;
+		}
+		
+		for (var i = 0; i < arr.length; i++){
+			if (arr[i].ScoreDiff < begin || arr[i].ScoreDiff > end){
+				//remove element that doesn't match
+				arr.splice(i, 1);
+				//backtrack due to removing an element
+				i--;
+			}
+		}		
+	}
+	return arr;
+}
+
 //searching for down
-//value represents nuber of down
+//value represents number of down (1,2,3,4)
 function searchByDown(d, arr){
 	for (var i = 0; i < arr.length; i++){
 		if (arr[i].down != d){
+			//remove element that doesn't match
 			arr.splice(i, 1);
+			//backtrack due to removing an element
 			i--;
 		}
 	}
 	return arr;
 }	
+
+//searching for ydstogo
+//value represents range
+//short = 1-2
+//medium = 3-6
+//long = 7-10
+//extra_long = 11+
+function searchByDist(dist, arr){
+	var begin;
+	var end;
+	//checking distance type to set range
+	if (dist == "short"){
+		//no distance less than 1 in dataset
+		begin = 1;
+		end = 2;
+	}
+	else if (dist == "medium"){
+		begin = 3;
+		end = 6;
+	}
+	else if (dist == "long"){
+		begin = 7;
+		end = 10;
+	}
+	else{
+		begin = 11;
+		end = 100;
+	}
+	
+	//go through array and find plays that are in this range
+	for (var i = 0; i < arr.length; i++){
+		if (arr[i].ydstogo < begin || arr[i].ydstogo > end){
+			//remove element that doesn't match
+			arr.splice(i, 1);
+			//backtrack due to removing an element
+			i--;
+		}
+	}
+	return arr;
+}
+//searching for qtr
+//value represents number of qtr (1,2,3,4)
+function searchByQtr(q, arr){
+	for (var i = 0; i < arr.length; i++){
+		if (arr[i].qtr != q){
+			//remove element that doesn't match
+			arr.splice(i, 1);
+			//backtrack due to removing an element
+			i--;
+		}
+	}
+	return arr;
+}
+
+//searching by TimeUnder
+//mainly will be used in qtrs 2 and 4
+//value corresponds to value of TimeUnder column (4,2)
+function searchByTime(t, arr){
+	//only keep plays that are under the time
+	for (var i = 0; i < arr.length; i++){
+		if (arr[i].TimeUnder > t){
+			//remove element that doesn't match
+			arr.splice(i, 1);
+			//backtrack due to removing an element
+			i--;
+		}
+	}
+	return arr;
+}
+
+//searching by posteam_timeouts_pre
+//value represents number of timeouts we are looking for (3,2,1,0)
+function searchByTimeouts(timeouts, arr){
+	for (var i = 0; i < arr.length; i++){
+		if (arr[i].posteam_timeouts_pre != timeouts){
+			//remove element that doesn't match
+			arr.splice(i, 1);
+			//backtrack due to removing an element
+			i--;
+		}
+	}
+	return arr;
+}
 
 function WriteData(){		//when send clicked creates new child
 	
@@ -185,6 +386,3 @@ function WriteData(){		//when send clicked creates new child
     ref.child("TEST").set("TESTDATA");
     console.log("Data written.")
   }
-
-
-
