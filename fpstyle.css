@@ -204,6 +204,9 @@ displayed below*/
 	visibility: hidden;
 	
 }
+
+
+/*The characteristics of the div in which data on the help page will be displayed*/
 	
 .container3
 {
@@ -212,14 +215,32 @@ displayed below*/
 	border-radius:2px;
 	border-style:solid;
 	width:43%;
-	height:60%;
-	float:right;
+	height:70%;
+	float:left;
 	display:inline-block;	
 	font-family:courier,arial,helvetica;
 	font-weight:bold;	
 	text-align:left;
-	padding: 10px;
+	padding: 20px;
 	position:relative;
+}
+
+/*The characteristics of the div in which data on the help page will be displayed*/
+
+.container4
+{
+	margin-right:40px;
+	border-color:white;
+	border-radius:2px;
+	border-style:solid;
+	width:43%;
+	height:70%;
+	float:right;
+	display:inline-block;
+	font-family:courier,arial,helvetica;
+	font-weight:bold;
+	text-align:left;
+	padding: 10px;
 }
 
 /*The characteristics of the Submit button, for the text to be alligned
