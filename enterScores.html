@@ -45,18 +45,18 @@ The div to be able to place our contents with respect to the CSS code
 		  -displays a welcome page
 		  -provides a link that takes the user to the home page 
 		-->
-
+		
 		<div class="container1">
-			<form id="situations" action="/action_page.php" method="post">		
-				<p id='playinfo'> ***Please fill in all information. Thank you!! ***
-					<a href="help.html">
+			<form id="situations" action="/action_page.php" method="post">	
+				
+				<p id='playinfo'> ***Fill in as many or as little fields as you want***
+				<a href="help.html">
 						<img src="faq.png" alt = "FAQ" style="float:right;width:40px;height:40px">
-					</a>
-				</p>
+					</a></p>
 				
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
 				<select name="fieldPosition" id="fieldPosition" >
-					<option value="" checked="checked">N/A</option>
+					<option value="na" selected>N/A</option>
 					<option value="1">Backed Up (own goal line - -10)</option>
 					<option value="2">-10 - -25</option>
 					<option value="3">-25 - 50</option>
@@ -91,7 +91,7 @@ The div to be able to place our contents with respect to the CSS code
 				
 				<label for="down"><strong>Down: </strong></label>
 				<select name="down" id="down" >
-					<option value="" checked="checked">N/A</option>
+					<option value="na" selected>N/A</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -101,7 +101,7 @@ The div to be able to place our contents with respect to the CSS code
 				
 				<label for="Distance"><strong> Distance: </strong></label>
 				<select name="Distance" id="distance" >
-					<option value="" checked="checked">N/A</option>
+					<option value="na" selected>N/A</option>
 					<option value = "short">Short (1-2)</option>
 					<option value="medium">Medium (3-6)</option>
 					<option value="long">Long (7-10)</option>
@@ -111,7 +111,7 @@ The div to be able to place our contents with respect to the CSS code
 					
 				<label for="quarterNumber"><strong>Quarter Number: </strong></label>
 				<select name="quarterNumber" id="quarterNumber" >
-					<option value="" checked="checked">N/A</option>
+					<option value="na" selected>N/A</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -122,24 +122,25 @@ The div to be able to place our contents with respect to the CSS code
 				
 				<label for="timeRemaining"><strong> Time Remaining: </strong></label>
 				<select name="timeRemaining" id="timeRemaining" >
-					<option value="" checked="checked">N/A</option>
-					<option value="4minutes">Final 4 minutes of qtr</option>
-					<option value="2minutes">Final 2 minutes of qtr</option>
+					<option value="na" selected>N/A</option>
+					<option value="4">Fianl 4 minutes of qtr</option>
+					<option value="2">Final 2 minutes of qtr</option>
 				</select>	
 				<br/>
 				<br/>
 				
-				<label for="timeOuts"><strong>Time Outs: </strong></label>
+				<label for="timeouts"><strong>Time Outs: </strong></label>
 				<select name="timeouts" id="timeouts" >
-					<option value="" checked="checked">N/A</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
+					<option value="na" checked="checked">N/A</option>
 					<option value="3">3</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
+					<option value="0">0</option>
 				</select>	
-				<br/></br>				
+				<br/></br>
 				
 				<div class="hitsubmit">
-					<button type="buttond" id="data" onclick="ShowData();submitData()">Get data from database</button>
+					<input type="submit" name="confirm" id="confirm" value="Loading Play by Play Data..." disabled/>
 					
 					<br>
 				</div>
@@ -150,14 +151,12 @@ The div to be able to place our contents with respect to the CSS code
 			
 	
 		<div id="container2" class="container2">
-				
+			<!--<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>-->
 			<fieldset>
 				<legend><strong>Run</strong></legend>
 				  <label for="rplays" id="totPR">Total Plays:</label><br>
 				  
 				  <label for="raverageYards" id="avgYR">Average Yards:</label><br>
-				  
-				  <label for="rnumbers" id="numR">Numbers:</label><br>
 				  
 				  <label for="rconversions" id="convR">Conversion %:</label><br>
 				  
@@ -176,8 +175,6 @@ The div to be able to place our contents with respect to the CSS code
 				  <label for="psack" id="sack">Sacks:</label><br>
 				  
 				  <label for="paverageYards" id="avgYP">Average Yards:</label><br>
-				  
-				  <label for="pnumbers" id="numP">Numbers:</label><br>
 				  
 				  <label for="pconversions" id="convP">Conversion %:</label><br>
 				  
