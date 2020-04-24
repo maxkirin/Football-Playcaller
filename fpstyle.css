@@ -33,8 +33,7 @@ Setting the title in the wrapper div to be alligned in the center*/
 }
 	
 
-
-/*formatting all legends on our forms*/
+/*formatting all legends and selct options on our forms*/
 legend
 {
 	text-align:center;
@@ -47,6 +46,7 @@ select
 	display:inline-block;
 	position:relative;
 }
+
 /*certain information that we print we want to appear red, to show urgency to the user*/
 #bookinfo
 {
@@ -97,15 +97,9 @@ label
 /*all input fields are centered*/
 
 input{
-	position:auto;
-	
+	position:auto;	
 }
 
-#results
-{
-		text-align:center;
-		color:red;
-}
 
 /*This is where the main contents and the wrapper div will be placed*/
 
