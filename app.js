@@ -184,32 +184,32 @@ function ShowData(data){
 	}
 	
 	//Run
-	$("#totPR").append("\t"+runplays);
+	$("#totPR").html("Total Plays: \t"+runplays);
 	var ravgyards = (rungain/runplays) * 100;
-	$("#avgYR").append("\t"+ravgyards.toFixed(2));
+	$("#avgYR").html("Average Yards: \t"+ravgyards.toFixed(2));
 	//$("#numR").append("\t"+count);
 	var ravgconv = (runconv/passplays) * 100;
-	$("#convR").append("\t"+ravgconv.toFixed(2)+"%");
+	$("#convR").html("Conversion %: \t"+ravgconv.toFixed(2)+"%");
 	var negydsperc = (runydsneg/runplays) * -100;
-	$("#lossyards").append("\t"+negydsperc.toFixed(2)+"%");
+	$("#lossyards").html("Loss of yards %: \t"+negydsperc.toFixed(2)+"%");
 		
 	//Pass
-	$("#totPP").append("\t"+passplays);
+	$("#totPP").html("Total Plays: \t"+passplays);
 	var passcompperc = (passcomp / passplays) * 100;
-	$("#comp").append("\t"+passcompperc.toFixed(2)+"%");
-	$("#inter").append("\t"+interception);
-	$("#sack").append("\t"+sacks);
+	$("#comp").html("Completion %: \t"+passcompperc.toFixed(2)+"%");
+	$("#inter").html("Interceptions: \t"+interception);
+	$("#sack").html("Sacks: \t"+sacks);
 	var pavgyards = (passgain/passplays) * 100;
-	$("#avgYP").append("\t"+pavgyards.toFixed(2));
-	$("#numP").append("\t"+"what do you mean");
+	$("#avgYP").html("Average Yards: \t"+pavgyards.toFixed(2));
+	//$("#numP").append("\t"+"what do you mean");
 	var avgconv = (passconv/passplays) * 100;
-	$("#convP").append("\t"+avgconv.toFixed(2)+"%");
+	$("#convP").html("Conversion %: \t"+avgconv.toFixed(2)+"%");
 	
 	//Table
 	var avgRun = (runepa/runplays) * 100;
-	$("#avgrun").append("\t"+avgRun.toFixed(2));
+	$("#avgrun").html("\t"+avgRun.toFixed(2));
 	var avgPass = (passepa/passplays) * 100;
-	$("#avgpass").append("\t"+avgPass.toFixed(2));
+	$("#avgpass").html("\t"+avgPass.toFixed(2));
 	
 	console.log("total run: "+runplays);
 	console.log("total pass: "+passplays);
