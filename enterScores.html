@@ -12,9 +12,7 @@ The html title
 	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
-	<!--<script language = "javascript" type = "text/javascript" src="libraries/p5.js"></script>
-	<script language = "javascript" src="libraries/p5.dom.js"></script>
-	<script language = "javascript" type = "text/javascript" src="sketch.js"></script>-->
+	
 </head>
 <!--
 The div to be able to place our contents with respect to the CSS code
@@ -34,6 +32,10 @@ The div to be able to place our contents with respect to the CSS code
 		
 		
 	<div class='wrapper1'>
+	
+	<!--<form method="POST" action="help.html">
+			<input style= "margin-top: 10px; margin-left:10px" type="submit" name="home" id="home" value="Help Guide">
+	</form>-->
 	  <h1>~~Play and Score Simulation~~</h1>
 	  
 	  <br>
@@ -43,10 +45,14 @@ The div to be able to place our contents with respect to the CSS code
 		  -displays a welcome page
 		  -provides a link that takes the user to the home page 
 		-->
-
+		
 		<div class="container1">
-			<form id="situations" action="/action_page.php" method="post">		
-				<p id='bookinfo'> ***Fill in as many or as little fields as you want***</p>
+			<form id="situations" action="/action_page.php" method="post">	
+				
+				<p id='playinfo'> ***Fill in as many or as little fields as you want***
+				<a href="help.html">
+						<img src="faq.png" alt = "FAQ" style="float:right;width:40px;height:40px">
+					</a></p>
 				
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
 				<select name="fieldPosition" id="fieldPosition" >
@@ -145,40 +151,32 @@ The div to be able to place our contents with respect to the CSS code
 			
 	
 		<div id="container2" class="container2">
-			<button type="buttonw" id="write" onclick="WriteData()">Send data to database</button>
-			<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>
-			
-			<h3 id="head1" align="center">RESULTS</h3>
-			
+			<!--<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>-->
 			<fieldset>
 				<legend><strong>Run</strong></legend>
-				  <label for="rplays" id="awayS">Total Plays:</label><br>
+				  <label for="rplays" id="totPR">Total Plays:</label><br>
 				  
-				  <label for="raverageYards" id="awayT">Average Yards:</label><br>
+				  <label for="raverageYards" id="avgYR">Average Yards:</label><br>
 				  
-				  <label for="rnumbers" id="gameI">Numbers:</label><br>
+				  <label for="rconversions" id="convR">Conversion %:</label><br>
 				  
-				  <label for="rconversions" id="gameU">Conversion %:</label><br>
-				  
-				  <label for="rloss" id="homeS">Loss of yards %:</label><br>
+				  <label for="rloss" id="lossyards">Loss of yards %:</label><br>
 				  
 			</fieldset>
 			<br>
 			<fieldset>
 				<legend><strong>Pass</strong></legend>
-				  <label for="pplays" id="homeT">Total Plays:</label><br>
+				  <label for="pplays" id="totPP">Total Plays:</label><br>
 				  
-				  <label for="pcompletions" id="seaS">Completion %:</label><br>
+				  <label for="pcompletions" id="comp">Completion %:</label><br>
 				  
-				  <label for="pint" id="stateG">Interceptions:</label><br>
+				  <label for="pint" id="inter">Interceptions:</label><br>
 				  
-				  <label for="psack" id="typE">Sacks:</label><br>
+				  <label for="psack" id="sack">Sacks:</label><br>
 				  
-				  <label for="paverageYards" id="weeK">Average Yards:</label><br>
+				  <label for="paverageYards" id="avgYP">Average Yards:</label><br>
 				  
-				  <label for="pnumbers">Numbers:</label><br>
-				  
-				  <label for="pconversions">Conversion %:</label><br>
+				  <label for="pconversions" id="convP">Conversion %:</label><br>
 				  
 			</fieldset>
 			<br>
@@ -189,19 +187,18 @@ The div to be able to place our contents with respect to the CSS code
 				</tr>
 				<tr>
 					<td>Run</td>
-					<td></td>
+					<td id="avgrun"></td>
 				</tr>
 				
 				<tr>
 					<td>Pass</td>
-					<td></td>
+					<td id="avgpass"></td>
 		   
 				</tr>
 		 
 		 
 			</table>
 			
-			<h6 id="result"></h6>
 		</div>
 		
 	
