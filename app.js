@@ -8,21 +8,27 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var plays = [];
-var db = firebase.database();					//up to football-playcaller-f3ade
-var ref = db.ref();	
+var plays = []; 					//aray to store all key/value pairs
+var db = firebase.database();			//up to football-playcaller-f3ade
+var ref = db.ref();						//up to parent node that we need access to
+
+
+//loads all data from datbase into an array
 ref = ref.orderByKey().once("value", snap=>{		
 	console.log("data grabbed");
 	snap.forEach(function(childsnap) {
 		plays.push(childsnap.val())
 	});
-	var formButton = document.getElementById("confirm");
+	var formButton = document.getElementById("confirm"); 
 	formButton.disabled = false;
-	formButton.value = "Confirm";
+	formButton.value = "Confirm";			//allows access to array
 });
 
 var test = "-1" < "+1";
-console.log(test);
+console.log("prints false: "+test);
+	
+
+
 
 function submitData(e){
 	e.preventDefault();
@@ -40,8 +46,8 @@ function submitData(e){
 	
 	//from line 12, creating deep copy of array
 	var searchplays = [...plays];
-	console.log(searchplays.length);
-	
+	console.log("prints 12521: "+searchplays.length);
+	console.log(searchplays[50]);		//displays all key/values for one parent
 	//boolean defaults
 	//will be adjusted based on user selections
 	var fieldPosTest = true;
@@ -86,15 +92,7 @@ function submitData(e){
 	//play types as they may affect our calculations
 	
 	
-	for (var i = 0; i < searchplays.length; i++){
-		console.log(searchplays[i].posteam_timeouts_pre);
-	}
-	console.log(searchplays.length);
-	//console.log(plays[0].val());
-	
-	//print to screen when finished
-	//#awayS = id we are appending to
-	$("#awayS").append("\tDONE!!!!!!!!!!!!!!");
+	ShowData(searchplays);
 	
 }
 
@@ -114,29 +112,102 @@ scoreDiffBox.addEventListener('change', (event) => {
 	}
 })
 
-var text = document.getElementById("text");
-var buttonw = document.getElementById("write");
-var buttond = document.getElementById("data");
-var head1 = document.getElementById("head1");
-
-function ShowData(){
-	//var input = text.value;
-	//
+function ShowData(data){
 	
-	//ref.orderByValue() - will print the whole table and the number nodes
-	//the way it is now will display the away score in order; only showing the highest value
-	//child_added event to retrieve list of items
-	var testref = ref.orderByChild("AbsScoreDiff").startAt(1).endAt(3);
-	testref.on("value", snap=>{		
-		var count = 0;
-		snap.forEach(function(childsnap) {
-			count = count + 1;
-			console.log(childsnap.child("AbsScoreDiff").val());
-		});
-		
-		console.log(count);
+	var runplays = 0;
+	var rungain = 0;
+	var runconv = 0;
+	var runydsneg = 0;
+	var runepa = 0;
+	
+	var passplays = 0;
+	var passcomp = 0;
+	var interception = 0;
+	var sacks = 0;
+	var passgain = 0;
+	var passattempt = 0;
+	var passconv = 0;
+	var passepa = 0;
+	
+	for (var i = 0; i < data.length; i++){
+		//console.log("prints searchplays: "+searchplays[i].posteam_timeouts_pre);
+		//console.log("prints epa: "+data[i].epa);
+		if (data[i].play_type == "Run")
+		{ //run play
+			runplays = runplays + 1;
+			rungain = rungain + data[i].Yards_Gained;
+			runconv = runconv + data[i].FirstDown;
 				
-	});
+				if(data[i].Yards_Gained < 0)
+				{
+					runydsneg = runydsneg + 1;
+				}
+				if(data[i].epa != undefined)
+				{
+					runepa = runepa + data[i].epa;
+				}
+				
+		}
+		else if (data[i].play_type == "Pass")
+		{
+			passplays = passplays + 1;		//pass play
+			passgain = passgain + data[i].Yards_Gained;
+			passconv = passconv + data[i].FirstDown;
+			interception = interception + data[i].InterceptionThrown;
+			
+				if (data[i].PassOutcome == "Complete")
+				{
+					passcomp = passcomp + 1;
+				}
+				if(data[i].epa != undefined)
+				{
+					passepa = passepa + data[i].epa;
+				}
+		}
+		else if (data[i].play_type == "Sack")  //if under pass displays 0
+		{
+			passplays = passplays + 1;
+			sacks = sacks + 1;
+		}
+		
+	}
+	console.log(runepa);
+	
+	//Run
+	$("#totPR").html("Total Plays: \t"+runplays);
+	var ravgyards = (rungain/runplays);
+	$("#avgYR").html("Average Yards: \t"+ravgyards.toFixed(3));
+	//$("#numR").append("\t"+count);
+	var ravgconv = (runconv/passplays) * 100;
+	$("#convR").html("Conversion %: \t"+ravgconv.toFixed(2)+"%");
+	var negydsperc = (runydsneg/runplays) * 100;
+	$("#lossyards").html("Loss of yards %: \t"+negydsperc.toFixed(2)+"%");
+		
+	//Pass
+	$("#totPP").html("Total Plays: \t"+passplays);
+	var passcompperc = (passcomp / passplays) * 100;
+	$("#comp").html("Completion %: \t"+passcompperc.toFixed(2)+"%");
+	$("#inter").html("Interceptions: \t"+interception);
+	$("#sack").html("Sacks: \t"+sacks);
+	var pavgyards = (passgain/passplays);
+	$("#avgYP").html("Average Yards: \t"+pavgyards.toFixed(3));
+	var avgconv = (passconv/passplays) * 100;
+	$("#convP").html("Conversion %: \t"+avgconv.toFixed(2)+"%");
+	
+	//Table
+	var avgRun = (runepa/runplays);
+	console.log(avgRun);
+	console.log(runepa);
+	console.log(runplays);
+	$("#avgrun").html("\t"+avgRun.toFixed(3));
+	var avgPass = (passepa/passplays);
+	$("#avgpass").html("\t"+avgPass.toFixed(3));
+	
+	console.log("total run: "+runplays);
+	console.log("total pass: "+passplays);
+	
+	console.log("total of div1 search: "+data.length);
+	
 }	
 
 //searching for yrdline100
@@ -151,8 +222,8 @@ function ShowData(){
 function searchByFieldPosition(fp, arr){
 	var begin;
 	var end;
-	if (fp == 1){
-		begin = 0;
+	if (fp == 1){			//1/# - value given in html
+		begin = 0;			//meaning of 1/#
 		end = 10;
 	}
 	else if (fp == 2){
@@ -188,7 +259,7 @@ function searchByFieldPosition(fp, arr){
 			i--;
 		}
 	}
-	
+	//console.log("arr: "+arr[10]) //prints object object
 	return arr;
 }	
 
@@ -376,13 +447,3 @@ function searchByTimeouts(timeouts, arr){
 	}
 	return arr;
 }
-
-function WriteData(){		//when send clicked creates new child
-	
-	let db = firebase.database();
-    let ref = db.ref("example");
-
-    //Create new node key TEST and value TESTDATA
-    ref.child("TEST").set("TESTDATA");
-    console.log("Data written.")
-  }
