@@ -1,3 +1,11 @@
+<!--
+This is a website designed by Diego Rojo, Max Kirin,
+Grace Imanariyo & Keila Cressman.
+This page is the front page that the user looks at to enter
+information which will be used to display results such as the
+run, play and results EPA.
+-->
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -9,6 +17,9 @@ The html title
     <meta charset="utf-8" />
     <meta name="description" content="CTE" />
 	<link rel="stylesheet" type="text/css" href="fpstyle.css">
+	<!--
+	This is a section when we connect our web to our database (Firebase)
+	-->
 	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
@@ -20,6 +31,9 @@ The div to be able to place our contents with respect to the CSS code
 <body>
 	
 	<div class = "section">
+			<!--
+			This is a the beginning of the webpage with a video and a title
+			-->
 			<h3> Football Play Calling</h3>
 			
 			<div class="video-container">
@@ -30,30 +44,31 @@ The div to be able to place our contents with respect to the CSS code
 			</div>
 		</div>
 		
-		
+	<!--
+	This is big container where the contents of the search and the contents
+	of the results will be displayed separately
+	-->
 	<div class='wrapper1'>
-	
-	<!--<form method="POST" action="help.html">
-			<input style= "margin-top: 10px; margin-left:10px" type="submit" name="home" id="home" value="Help Guide">
-	</form>-->
 	  <h1>~~Play and Score Simulation~~</h1>
 	  
 	  <br>
-					<!-- 
-		The signup-submit.php
-		  -writes the account information to the database as a new user
-		  -displays a welcome page
-		  -provides a link that takes the user to the home page 
+	    <!--
+		This is a container where the contents of the search and submit option is.
+		The user will enter data as necessary in the respective fields.
+		This includes the fieldPosition, the scoredifferential, down distance, 
+		quarter number, time Remaining, timeOuts. Once you hit Submit, the results will appear
+		in another div.
 		-->
-		
 		<div class="container1">
 			<form id="situations" action="/action_page.php" method="post">	
 				
+				<!--This is the Help Section that will help the user with FAQs-->
 				<p id='playinfo'> ***Fill in as many or as little fields as you want***
 				<a href="help.html">
 						<img src="faq.png" alt = "FAQ" style="float:right;width:40px;height:40px">
 					</a></p>
 				
+				<!--user can choose the field position range they want to analyze-->
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
 				<select name="fieldPosition" id="fieldPosition" >
 					<option value="na" selected>N/A</option>
@@ -68,6 +83,9 @@ The div to be able to place our contents with respect to the CSS code
 				<br/>
 				<br/>
 				
+				<!--
+				This is a section where the user will be able to enter the score differentialthe
+				to indicate whether the team is winning, losing or if the game is tied.-->
 				<label for="scoreDiff"><strong>Score Differential: </strong></label>
 				<select name="scoreDiff" id="scoreDiff" >
 					<option value="na" selected>N/A</option>
@@ -76,6 +94,9 @@ The div to be able to place our contents with respect to the CSS code
 					<option value="losing">Losing</option>
 				</select>
 				
+				<!--
+				This is a section where the user will be able to enter the difference in scoreDiff
+				The user will be able to fill this section only when the game is not tied-->
 				<label for="scoreDiffNum"><strong>By: </strong></label>
 				<select name="scoreDiffNum" id="scoreDiffNum" disabled>
 					<option value="na" selected></option>
@@ -89,6 +110,7 @@ The div to be able to place our contents with respect to the CSS code
 				</select>				
 				<br><br>		
 				
+				<!--user can choose a certain down they want to analyze-->
 				<label for="down"><strong>Down: </strong></label>
 				<select name="down" id="down" >
 					<option value="na" selected>N/A</option>
@@ -99,6 +121,7 @@ The div to be able to place our contents with respect to the CSS code
 				</select>
 				<br><br>
 				
+				<!--user can select a certain yards to go range to analyze-->
 				<label for="Distance"><strong> Distance: </strong></label>
 				<select name="Distance" id="distance" >
 					<option value="na" selected>N/A</option>
@@ -109,6 +132,7 @@ The div to be able to place our contents with respect to the CSS code
 				</select>
 				<br><br>
 					
+				<!--user can choose the quarter they want to analyze-->
 				<label for="quarterNumber"><strong>Quarter Number: </strong></label>
 				<select name="quarterNumber" id="quarterNumber" >
 					<option value="na" selected>N/A</option>
@@ -120,6 +144,7 @@ The div to be able to place our contents with respect to the CSS code
 				<br/>
 				<br/>
 				
+				<!--user can designate the time remaining they want to anlyze-->
 				<label for="timeRemaining"><strong> Time Remaining: </strong></label>
 				<select name="timeRemaining" id="timeRemaining" >
 					<option value="na" selected>N/A</option>
@@ -129,6 +154,7 @@ The div to be able to place our contents with respect to the CSS code
 				<br/>
 				<br/>
 				
+				<!--user can select the number of timeouts remaining to analyze-->
 				<label for="timeouts"><strong>Time Outs: </strong></label>
 				<select name="timeouts" id="timeouts" >
 					<option value="na" checked="checked">N/A</option>
@@ -139,6 +165,7 @@ The div to be able to place our contents with respect to the CSS code
 				</select>	
 				<br/></br>
 				
+				<!--triggers the javascript function to filter the data by the user input-->
 				<div class="hitsubmit">
 					<input type="submit" name="confirm" id="confirm" value="Loading Play by Play Data..." disabled/>
 					
@@ -149,9 +176,15 @@ The div to be able to place our contents with respect to the CSS code
 			</form>
 		</div>
 			
-	
+		<!--
+		This is a container that will display the results depending on the search as soon 
+		as the submit button of container1 is pressed. These fields will be filled
+		with information from the database-->
 		<div id="container2" class="container2">
-			<!--<button type="buttond" id="data" onclick="ShowData()">Get data from database</button>-->
+			<!--
+			This is a section to display the results related to the Run call
+			These include the total plays, the average yards,numbers, conversion percentage--
+			and loss of yards-->
 			<fieldset>
 				<legend><strong>Run</strong></legend>
 				  <label for="rplays" id="totPR">Total Plays:</label><br>
@@ -164,6 +197,10 @@ The div to be able to place our contents with respect to the CSS code
 				  
 			</fieldset>
 			<br>
+			<!--
+			This is a section to display the results related to the Pass call
+			this includes the total plays, completion, interceptions, 
+			sacks, Average yards, numbers, and conversion percentage-->
 			<fieldset>
 				<legend><strong>Pass</strong></legend>
 				  <label for="pplays" id="totPP">Total Plays:</label><br>
@@ -180,6 +217,9 @@ The div to be able to place our contents with respect to the CSS code
 				  
 			</fieldset>
 			<br>
+			<!--
+			The table to display the ranking and average EPA results
+			-->
 			<table>
 				<tr>
 					<th>Ranking</th>
