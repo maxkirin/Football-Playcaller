@@ -19,21 +19,26 @@ ref = ref.orderByKey().once("value", snap=>{
 	snap.forEach(function(childsnap) {
 		plays.push(childsnap.val())
 	});
+	//tells button it is ready to be pressed
 	var formButton = document.getElementById("confirm"); 
 	formButton.disabled = false;
 	formButton.value = "Confirm";			//allows access to array
 });
 
-var test = "-1" < "+1";
-console.log("prints false: "+test);
-	
+/*
+function is called when the confirm button is pressed
 
-
-
+reading all of the user data, the array containing the play by play data
+is filtered down to plays that match the criteria
+This smaller array is then passed to another function (ShowData) to be analyzed
+*/
 function submitData(e){
+	//stops form from being reset
 	e.preventDefault();
+	//shows div that contains our summary and analysis
 	document.getElementById('container2').style.visibility = 'visible';		//container 2 is taken from enterscores.html
 
+	//each input field from the form is read
 	//teamTitle, fieldPosition, scoreDifferential, down, distance, quarterNumber, timeRemaining, timeouts
 	var fieldPosition = document.getElementById('fieldPosition').value;
 	var scoreDiff = document.getElementById('scoreDiff').value;
@@ -48,17 +53,9 @@ function submitData(e){
 	var searchplays = [...plays];
 	console.log("prints 12521: "+searchplays.length);
 	console.log(searchplays[50]);		//displays all key/values for one parent
-	//boolean defaults
-	//will be adjusted based on user selections
-	var fieldPosTest = true;
-	var scoreDiffTest = true;
-	var downTest = true;
-	var distTest = true;
-	var qtrTest = true;
-	var timeRemTest = true;
-	var timeoutTest = true;
 	
 	//find which values have been selected to be searched
+	//call appropriate function to filter array based on what has been selected
 	if (fieldPosition != "na"){
 		searchplays = searchByFieldPosition(fieldPosition, searchplays);
 	}
@@ -91,35 +88,48 @@ function submitData(e){
 	//may need to filter out plays with no down or get rid of certain
 	//play types as they may affect our calculations
 	
-	
+	//pass filtered array to function to summarize data to be displayed for the user
 	ShowData(searchplays);
 	
 }
 
+//registering the submitData function to the submit event
 const form = document.getElementById('situations');						//div:container 1; form: situations
 form.addEventListener('submit', submitData);				//when confirm clicked show container 2
 
+//creating an event for the scoreDifferential box
+//to be more user friendly
+//only can be selected when it is possible
 const scoreDiffBox = document.getElementById('scoreDiff');
 scoreDiffBox.addEventListener('change', (event) => {
 	const scoreDiffNumBox = document.getElementById('scoreDiffNum');
 	//two options that require second box
 	if (event.target.value === "winning" || event.target.value === "losing"){
+		//allow box to be selected
 		scoreDiffNumBox.disabled = false;
 	}
 	else{
+		//make box disabled and clear out any previously selected values
 		scoreDiffNumBox.value = "na";
 		scoreDiffNumBox.disabled = true;		
 	}
 })
 
+/*
+function to summarize a filtered dataset
+
+takes an array of play objects
+performs calculations in order to be displayed to the user
+*/
 function ShowData(data){
 	
+	//counters for run play box
 	var runplays = 0;
 	var rungain = 0;
 	var runconv = 0;
 	var runydsneg = 0;
 	var runepa = 0;
-	
+	//counter for the pass play box
 	var passplays = 0;
 	var passcomp = 0;
 	var interception = 0;
@@ -129,19 +139,23 @@ function ShowData(data){
 	var passconv = 0;
 	var passepa = 0;
 	
+	//loop throguh filtered array
 	for (var i = 0; i < data.length; i++){
-		//console.log("prints searchplays: "+searchplays[i].posteam_timeouts_pre);
-		//console.log("prints epa: "+data[i].epa);
 		if (data[i].play_type == "Run")
 		{ //run play
+			//increase the run play count
 			runplays = runplays + 1;
+			//add to the running total of yards gained and first downs
 			rungain = rungain + data[i].Yards_Gained;
+			//FirstDown is a binary indicator
 			runconv = runconv + data[i].FirstDown;
 				
+				//if play loses yards, add to the tally for negative plays
 				if(data[i].Yards_Gained < 0)
 				{
 					runydsneg = runydsneg + 1;
 				}
+				//some epa values are undefined, so not included in the EPA sum
 				if(data[i].epa != undefined)
 				{
 					runepa = runepa + data[i].epa;
@@ -149,57 +163,69 @@ function ShowData(data){
 				
 		}
 		else if (data[i].play_type == "Pass")
-		{
-			passplays = passplays + 1;		//pass play
+		{ //pass play
+			//increase the run play count
+			passplays = passplays + 1;	
+			//add to the running total of yards gained and firstdowns and interceptions
 			passgain = passgain + data[i].Yards_Gained;
+			//FirstDown and InterceptionThrown are binary indicators
 			passconv = passconv + data[i].FirstDown;
 			interception = interception + data[i].InterceptionThrown;
 			
+				//running tally of completed passes
 				if (data[i].PassOutcome == "Complete")
 				{
 					passcomp = passcomp + 1;
 				}
+				//some epa values are undefined, so not included in EPA sum
 				if(data[i].epa != undefined)
 				{
 					passepa = passepa + data[i].epa;
 				}
 		}
-		else if (data[i].play_type == "Sack")  //if under pass displays 0
+		//if the play type is a sack, it is a pass play
+		else if (data[i].play_type == "Sack")
 		{
+			//increment tallies for pass play count and sacks
 			passplays = passplays + 1;
 			sacks = sacks + 1;
 		}
 		
 	}
-	console.log(runepa);
 	
-	//Run
+	//using jquery, change the html text for certain ids in enterScores
+	
+	//Run values
 	$("#totPR").html("Total Plays: \t"+runplays);
+	//calc for average yards
 	var ravgyards = (rungain/runplays);
 	$("#avgYR").html("Average Yards: \t"+ravgyards.toFixed(3));
-	//$("#numR").append("\t"+count);
+	//calc for conversion %
 	var ravgconv = (runconv/passplays) * 100;
 	$("#convR").html("Conversion %: \t"+ravgconv.toFixed(2)+"%");
+	//calc for negative plays %
 	var negydsperc = (runydsneg/runplays) * 100;
-	$("#lossyards").html("Loss of yards %: \t"+negydsperc.toFixed(2)+"%");
+	$("#lossyards").html("Negative plays %: \t"+negydsperc.toFixed(2)+"%");
 		
-	//Pass
+	//Pass values
 	$("#totPP").html("Total Plays: \t"+passplays);
+	//calc for completion %
 	var passcompperc = (passcomp / passplays) * 100;
 	$("#comp").html("Completion %: \t"+passcompperc.toFixed(2)+"%");
 	$("#inter").html("Interceptions: \t"+interception);
 	$("#sack").html("Sacks: \t"+sacks);
+	//calc for average yards
 	var pavgyards = (passgain/passplays);
 	$("#avgYP").html("Average Yards: \t"+pavgyards.toFixed(3));
+	//calc for conversion %
 	var avgconv = (passconv/passplays) * 100;
 	$("#convP").html("Conversion %: \t"+avgconv.toFixed(2)+"%");
 	
-	//Table
+	//EPA Table
+	//calc for average run epa
 	var avgRun = (runepa/runplays);
-	console.log(avgRun);
-	console.log(runepa);
-	console.log(runplays);
 	$("#avgrun").html("\t"+avgRun.toFixed(3));
+	//calc for average pass epa
 	var avgPass = (passepa/passplays);
 	$("#avgpass").html("\t"+avgPass.toFixed(3));
 	
@@ -259,7 +285,6 @@ function searchByFieldPosition(fp, arr){
 			i--;
 		}
 	}
-	//console.log("arr: "+arr[10]) //prints object object
 	return arr;
 }	
 
