@@ -63,11 +63,16 @@ The div to be able to place our contents with respect to the CSS code
 	The user will enter data as necessary in the respective fields.
 	This includes the fieldPosition, the scoredifferential, down distance, 
 	quarter number, time Remaining, timeOuts. Once you hit Submit, the results will appear
-	in another div.
+	in another div. Once you hit the Question Mark icon, you will be directed to the help page.
 	-->
 		<div class="container1">
 			<form id="situations" method="post">		
-				<p id='bookinfo'> ***Fill in as many or as little fields as you want***</p>
+				<p id='bookinfo'> ***Fill in as many or as little fields as you want***
+					<a href="help.html">
+						<img src="faq.png" alt = "FAQ" style="float:right;width:40px;height:40px">
+					</a>
+				</p>
+					
 				
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
 				<select name="fieldPosition" id="fieldPosition" >
