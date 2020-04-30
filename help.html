@@ -1,6 +1,9 @@
 <!--
-help
-This page displays FAQs so the user can learn about how to use the system is something is unclear
+fpstyle.css
+This is the help page of a website designed by Diego Rojo, Max Kirin,
+Grace Imanariyo & Keila Cressman.
+This page is an FAQs page here to assist a user to 
+better navigate our website. 
 -->
 
 <!DOCTYPE html>
@@ -8,7 +11,10 @@ This page displays FAQs so the user can learn about how to use the system is som
 <html lang="en">
 
 	<head>
-		<!--Same code to keep consistency-->
+		<!--
+	This is the description of the page. We connect our css file
+	for the better responsiveness of our webpage
+	-->
 		<title>Help</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="CTE" />
@@ -18,10 +24,14 @@ This page displays FAQs so the user can learn about how to use the system is som
 	</head>
 	<body>
 	
-		
+	<!--
+	The div to be able to place our contents with respect to the CSS code
+	-->	
 	<div class = "section">
 		<h1> FootBall Play Calling Guide</h1>
-		
+		<!--
+	This is a the beginning of the webpage with a video and a title
+	-->
 		<div class="video-container">
 			<div class="color-overlay"></div>
 			<video autoplay loop muted>
@@ -29,13 +39,17 @@ This page displays FAQs so the user can learn about how to use the system is som
 			</video>
 		</div>
 	</div>
-		
+	<!--
+	This is big container where the contents of the help FAQs will be displayed
+	-->	
 		
 		<div class="wrapper1">
 					
 			<h1> FAQs </h1>
 					<br/>
-			
+			<!--
+			This is left container where the contents of the help FAQs will be displayed
+			-->
 			<div class="container3" >
 			
 			<!--List of some FAQs, with links to point users in the right direction-->
@@ -69,7 +83,9 @@ This page displays FAQs so the user can learn about how to use the system is som
 	
 				</ol>
 				</div>
-				
+				<!--
+			This is right container where the contents of the help FAQs will be displayed
+			-->
 				<div class="container4">
 				<ol start="5"> 
 				<li>
@@ -96,6 +112,9 @@ This page displays FAQs so the user can learn about how to use the system is som
 
 					<p>Depending on your selection it will return the factors used to calculate the 
 						average of Runs and Passes.</p>
+						<!--
+				This is a section where the user can go back to the Home page to enter data
+			-->
 					<form method="POST" action="enterScores.html">
 						<input type="submit" name="home" id="home" value="Return to Home" class="center">
 					</form>

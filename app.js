@@ -131,24 +131,18 @@ function ShowData(data){
 	
 	for (var i = 0; i < data.length; i++){
 		//console.log("prints searchplays: "+searchplays[i].posteam_timeouts_pre);
-		console.log("prints run: "+data[i].play_type);
+		//console.log("prints epa: "+data[i].epa);
 		if (data[i].play_type == "Run")
-		{
+		{ //run play
 			runplays = runplays + 1;
+			rungain = rungain + data[i].Yards_Gained;
+			runconv = runconv + data[i].FirstDown;
 				
-				if(data[i].Yards_Gained > 0)
-				{
-					rungain = rungain + data[i].Yards_Gained;
-				}
 				if(data[i].Yards_Gained < 0)
 				{
-					runydsneg = runydsneg + data[i].Yards_Gained;
+					runydsneg = runydsneg + 1;
 				}
-				if(data[i].two_point_conversion_prob > 0)
-				{
-					runconv = runconv + data[i].two_point_conversion_prob;
-				}
-				if(data[i].epa > 0)
+				if(data[i].epa != undefined)
 				{
 					runepa = runepa + data[i].epa;
 				}
@@ -156,41 +150,37 @@ function ShowData(data){
 		}
 		else if (data[i].play_type == "Pass")
 		{
-			passplays = passplays + 1;		//run play
+			passplays = passplays + 1;		//pass play
+			passgain = passgain + data[i].Yards_Gained;
+			passconv = passconv + data[i].FirstDown;
+			interception = interception + data[i].InterceptionThrown;
 			
 				if (data[i].PassOutcome == "Complete")
 				{
 					passcomp = passcomp + 1;
-					passgain = passgain + data[i].Yards_Gained;
-					passconv = passconv + data[i].two_point_conversion_prob;
-					
 				}
-				
-				if (data[i].InterceptionThrown > 0)
-				{
-					interception = interception + 1;
-				}
-				
-				if(data[i].epa > 0)
+				if(data[i].epa != undefined)
 				{
 					passepa = passepa + data[i].epa;
 				}
 		}
-		if (data[i].Sack > 0)  //if under pass displays 0
+		else if (data[i].play_type == "Sack")  //if under pass displays 0
 		{
+			passplays = passplays + 1;
 			sacks = sacks + 1;
 		}
 		
 	}
+	console.log(runepa);
 	
 	//Run
 	$("#totPR").html("Total Plays: \t"+runplays);
-	var ravgyards = (rungain/runplays) * 100;
-	$("#avgYR").html("Average Yards: \t"+ravgyards.toFixed(2));
+	var ravgyards = (rungain/runplays);
+	$("#avgYR").html("Average Yards: \t"+ravgyards.toFixed(3));
 	//$("#numR").append("\t"+count);
 	var ravgconv = (runconv/passplays) * 100;
 	$("#convR").html("Conversion %: \t"+ravgconv.toFixed(2)+"%");
-	var negydsperc = (runydsneg/runplays) * -100;
+	var negydsperc = (runydsneg/runplays) * 100;
 	$("#lossyards").html("Loss of yards %: \t"+negydsperc.toFixed(2)+"%");
 		
 	//Pass
@@ -199,17 +189,19 @@ function ShowData(data){
 	$("#comp").html("Completion %: \t"+passcompperc.toFixed(2)+"%");
 	$("#inter").html("Interceptions: \t"+interception);
 	$("#sack").html("Sacks: \t"+sacks);
-	var pavgyards = (passgain/passplays) * 100;
-	$("#avgYP").html("Average Yards: \t"+pavgyards.toFixed(2));
-	//$("#numP").append("\t"+"what do you mean");
+	var pavgyards = (passgain/passplays);
+	$("#avgYP").html("Average Yards: \t"+pavgyards.toFixed(3));
 	var avgconv = (passconv/passplays) * 100;
 	$("#convP").html("Conversion %: \t"+avgconv.toFixed(2)+"%");
 	
 	//Table
-	var avgRun = (runepa/runplays) * 100;
-	$("#avgrun").html("\t"+avgRun.toFixed(2));
-	var avgPass = (passepa/passplays) * 100;
-	$("#avgpass").html("\t"+avgPass.toFixed(2));
+	var avgRun = (runepa/runplays);
+	console.log(avgRun);
+	console.log(runepa);
+	console.log(runplays);
+	$("#avgrun").html("\t"+avgRun.toFixed(3));
+	var avgPass = (passepa/passplays);
+	$("#avgpass").html("\t"+avgPass.toFixed(3));
 	
 	console.log("total run: "+runplays);
 	console.log("total pass: "+passplays);
