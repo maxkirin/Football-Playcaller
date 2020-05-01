@@ -9,7 +9,6 @@ and our help page as well
 /*
 The wrapper is our main div on which contents and other divs are displayed. We set
 a background image of a football field*/
-
 .wrapper1{
 	background-image:url(field2.jpg);
 	background-size: cover;
@@ -21,10 +20,13 @@ a background image of a football field*/
 	font-size:14pt;
 	color: white;
 	position:relative;
+
 	border-radius: 20px;
+
 	opacity:.8;
 
 }
+
 /*
 Setting the title in the wrapper div to be alligned in the center*/
 .wrapper1 h1, p
@@ -40,11 +42,13 @@ legend
 	margin-right:50%;
 
 }
+
 select
 {
 	display:inline-block;
 	position:relative;
 }
+
 /*certain information that we print we want to appear red, to show urgency to the user*/
 #playinfo
 {
@@ -93,6 +97,7 @@ label
 	padding-left:-20px;
 	padding-right:-20px;
 }
+
 /*all input fields are centered*/
 input{
 	position:auto;
@@ -112,6 +117,7 @@ input{
 	font-family:courier,arial,helvetica;
 
 }
+
 /*The setting for the FootBall Play caller main title*/
 .section h3
 {
@@ -126,6 +132,7 @@ input{
 	opacity:.9;
 
 }
+
 /*The setting behavior for the Results header to be displayed. The characteristics 
 displayed below*/
 .section h1
@@ -141,6 +148,7 @@ displayed below*/
 	opacity:.7;
 
 }
+
 /*The setting for the video to be properly aligned*/
 .video-container
 {
@@ -150,6 +158,7 @@ displayed below*/
 	width:100%;
 	height:80vh;
 }
+
 /*The setting to better set the colors of the website*/
 .color-overlay
 {
@@ -171,13 +180,14 @@ displayed below*/
 	border-radius:2px;
 	border-style:solid;
 	width:43%;
-	height:70%;
+	height:80%;
 	float:left;
 	opacity:0.9;
 	font-family:courier,arial,helvetica;
 	padding:10px;
 
 }
+
 /*The characteristics of the div in which data will be displayed*/
 .container2
 {
@@ -186,7 +196,7 @@ displayed below*/
 	border-radius:2px;
 	border-style:solid;
 	width:43%;
-	height:70%;
+	height:80%;
 	float:right;
 	display:inline-block;
 	font-family:courier,arial,helvetica;
@@ -195,22 +205,22 @@ displayed below*/
 	padding: 10px;
 	visibility: hidden;
 }
+
 /*The characteristics of the div in which data on the help page will be displayed*/
 .container3
 {
-	margin-right:40px;
+	margin-left:30px;
 	border-color:white;
 	border-radius:2px;
 	border-style:solid;
 	width:43%;
-	height:70%;
+	height:80%;
 	float:left;
-	display:inline-block;
+	opacity:0.9;
 	font-family:courier,arial,helvetica;
-	font-weight:bold;
-	text-align:left;
-	padding: 10px;
+	padding:10px;
 }
+
 /*The characteristics of the div in which data on the help page will be displayed*/
 .container4
 {
@@ -219,7 +229,7 @@ displayed below*/
 	border-radius:2px;
 	border-style:solid;
 	width:43%;
-	height:70%;
+	height:80%;
 	float:right;
 	display:inline-block;
 	font-family:courier,arial,helvetica;
@@ -227,12 +237,14 @@ displayed below*/
 	text-align:left;
 	padding: 10px;
 }
+
 /*The characteristics of the Submit button, for the text to be alligned
 in the middle*/
 .hitsubmit
 {
 	text-align:center;
 }
+
 /*These are the settings of the table to have specific size and 
 to be know where to be alligned*/
 table {
@@ -247,6 +259,7 @@ table {
   padding:8px;
   margin: auto;
 }
+
 /*These are the settings of the table headers and rows*/
 td, th {
   border: 1px solid #dddddd;
@@ -265,6 +278,7 @@ th{
 {
 	text-align:center;
 }
+
 /*These are the settings for the help page*/
 .helpDiv
 {	

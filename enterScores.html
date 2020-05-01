@@ -1,4 +1,4 @@
-<!--
+  <!--
 This is a website designed by Diego Rojo, Max Kirin,
 Grace Imanariyo & Keila Cressman.
 This page is the front page that the user looks at to enter
@@ -9,19 +9,22 @@ run, play and results EPA.
 <!DOCTYPE html>
 
 <html lang="en">
-
+<!--
+The html title
+-->
 <head>
-
     <title>Football Play Calling</title>
     <meta charset="utf-8" />
-    <meta name="description" content="Football Playcaller" />
+    <meta name="description" content="Football Play Caller" />
 	<link rel="stylesheet" type="text/css" href="fpstyle.css">
+	<link rel="icon" href="ball.jpg" >
 	<!--
 	This is a section when we connect our web to our database (Firebase)
 	-->
 	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
+	
 </head>
 <!--
 The div to be able to place our contents with respect to the CSS code
@@ -29,11 +32,9 @@ The div to be able to place our contents with respect to the CSS code
 <body>
 	
 	<div class = "section">
-	
 	<!--
 	This is a the beginning of the webpage with a video and a title
 	-->
-
 			<h3> Football Play Calling</h3>
 			
 			<div class="video-container">
@@ -47,32 +48,30 @@ The div to be able to place our contents with respect to the CSS code
 	<!--
 	This is big container where the contents of the search and the contents
 	of the results will be displayed separately
-	-->
+	-->	
 	<div class='wrapper1'>
 	
-	<!--This is the Help Section that will help the user with FAQs-->
-	<form method="POST" action="help.html">
-					<input style= "margin-top: 10px; margin-left:10px" type="submit" name="home" id="home" value="Help Guide">
-				</form>
+	
 	  <h1>~~Play and Score Simulation~~</h1>
 	  
 	  <br>
+		<!--
+		This is a container where the contents of the search and submit option is.
+		The user will enter data as necessary in the respective fields.
+		This includes the fieldPosition, the scoredifferential, down distance, 
+		quarter number, time Remaining, timeOuts. Once you hit Submit, the results will appear
+		in another div.
+		-->
 		
-	<!--
-	This is a container where the contents of the search and submit option is.
-	The user will enter data as necessary in the respective fields.
-	This includes the fieldPosition, the scoredifferential, down distance, 
-	quarter number, time Remaining, timeOuts. Once you hit Submit, the results will appear
-	in another div. Once you hit the Question Mark icon, you will be directed to the help page.
-	-->
 		<div class="container1">
-			<form id="situations" method="post">		
-				<p id='bookinfo'> ***Fill in as many or as little fields as you want***
-					<a href="help.html">
+			<form id="situations" method="post">	
+				
+				<p id='playinfo'> ***Fill in as many or as little fields as you want***
+				<!--This is the Help Section that will help the user with FAQs-->
+				<a href="help.html">
 						<img src="faq.png" alt = "FAQ" style="float:right;width:40px;height:40px">
-					</a>
-				</p>
-					
+					</a></p>
+				<!--user can choose the field position range they want to analyze-->
 				
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
 				<select name="fieldPosition" id="fieldPosition" >
@@ -84,14 +83,13 @@ The div to be able to place our contents with respect to the CSS code
 					<option value="5">Red Zone (+25 - +10)</option>
 					<option value="6">+10 - +3</option>
 					<option value="7">Goal Line (+3 - goal line)</option>
-					<br/>
 				</select>				
 				<br/>
 				<br/>
 				<!--
-			This is a section where the user will be able to enter the score differentialthe
-			to indicate whether the team is winning, losing or if the game is tied.-->
-			
+				This is a section where the user will be able to enter the score differentialthe
+				to indicate whether the team is winning, losing or if the game is tied.-->
+				
 				<label for="scoreDiff"><strong>Score Differential: </strong></label>
 				<select name="scoreDiff" id="scoreDiff" >
 					<option value="na" selected>N/A</option>
@@ -100,9 +98,9 @@ The div to be able to place our contents with respect to the CSS code
 					<option value="losing">Losing</option>
 				</select>
 				<!--
-			This is a section where the user will be able to enter the difference in scoreDiff
-			The user will be able to fill this section only when the game is not tied-->
-			
+				This is a section where the user will be able to enter the difference in scoreDiff
+				The user will be able to fill this section only when the game is not tied-->
+				
 				<label for="scoreDiffNum"><strong>By: </strong></label>
 				<select name="scoreDiffNum" id="scoreDiffNum" disabled>
 					<option value="na" selected></option>
@@ -116,6 +114,8 @@ The div to be able to place our contents with respect to the CSS code
 				</select>				
 				<br><br>		
 				
+				<!--user can choose a certain down they want to analyze-->
+				
 				<label for="down"><strong>Down: </strong></label>
 				<select name="down" id="down" >
 					<option value="na" selected>N/A</option>
@@ -126,6 +126,8 @@ The div to be able to place our contents with respect to the CSS code
 				</select>
 				<br><br>
 				
+				<!--user can select a certain yards to go range to analyze-->
+				
 				<label for="Distance"><strong> Distance: </strong></label>
 				<select name="Distance" id="distance" >
 					<option value="na" selected>N/A</option>
@@ -135,7 +137,9 @@ The div to be able to place our contents with respect to the CSS code
 					<option value="extra_long"> Extra Long (11+)</option>
 				</select>
 				<br><br>
-					
+				
+				<!--user can choose the quarter they want to analyze-->	
+				
 				<label for="quarterNumber"><strong>Quarter Number: </strong></label>
 				<select name="quarterNumber" id="quarterNumber" >
 					<option value="na" selected>N/A</option>
@@ -147,84 +151,84 @@ The div to be able to place our contents with respect to the CSS code
 				<br/>
 				<br/>
 				
+				<!--user can designate the time remaining they want to anlyze-->
+				
 				<label for="timeRemaining"><strong> Time Remaining: </strong></label>
 				<select name="timeRemaining" id="timeRemaining" >
 					<option value="na" selected>N/A</option>
-					<option value="4minutes">Final 4 minutes of qtr</option>
-					<option value="2minutes">Final 2 minutes of qtr</option>
+					<option value="4">Final 4 minutes of qtr</option>
+					<option value="2">Final 2 minutes of qtr</option>
 				</select>	
 				<br/>
 				<br/>
+				
+				<!--user can select the number of timeouts remaining to analyze-->
 				
 				<label for="timeouts"><strong>Time Outs: </strong></label>
 				<select name="timeouts" id="timeouts" >
-					<option value="" checked="checked">N/A</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
+					<option value="na" checked="checked">N/A</option>
 					<option value="3">3</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
+					<option value="0">0</option>
 				</select>	
 				<br/></br>
-					
-				<br/></br>
+				
+				<!--triggers the javascript function to filter the data by the user input-->
 				
 				<div class="hitsubmit">
-					<input type="submit" name="confirm" id="confirm" value="Confirm"/>
+					<input type="submit" name="confirm" id="confirm" value="Loading Play by Play Data..." disabled/>
+					
 					<br>
 				</div>
 				</br>
 				</br>
 			</form>
 		</div>
-		
+			
 		<!--
 		This is a container that will display the results depending on the search as soon 
 		as the submit button of container1 is pressed. These fields will be filled
 		with information from the database-->
 	
-		<!--
-		This is a section to display the results related to the Run call
-		These include the total plays, the average yards,numbers, conversion percentage--
-		and loss of yards-->
 		
 		<div id="container2" class="container2">
-			
+			<!--
+			This is a section to display the results related to the Run call
+			These include the total plays, the average yards,numbers, conversion percentage--
+			and loss of yards-->
 			<fieldset>
 				<legend><strong>Run</strong></legend>
-				  <label for="rplays" id="awayS">Total Plays:</label><br>
+				  <label for="rplays" id="totPR">Total Plays:</label><br>
 				  
-				  <label for="raverageYards" id="awayT">Average Yards:</label><br>
+				  <label for="raverageYards" id="avgYR">Average Yards:</label><br>
 				  
-				  <label for="rnumbers" id="gameI">Numbers:</label><br>
+				  <label for="rconversions" id="convR">Conversion %:</label><br>
 				  
-				  <label for="rconversions" id="gameU">Conversion %:</label><br>
-				  
-				  <label for="rloss" id="homeS">Loss of yards %:</label><br>
+				  <label for="rloss" id="lossyards">Loss of yards %:</label><br>
 				  
 			</fieldset>
 			<br>
 			<!--
-		This is a section to display the results related to the Pass call
-		this includes the total plays, completion, interceptions, 
-		sacks, Average yards, numbers, and conversion percentage-->
+			This is a section to display the results related to the Pass call
+			this includes the total plays, completion, interceptions, 
+			sacks, Average yards, numbers, and conversion percentage-->
 			<fieldset>
 				<legend><strong>Pass</strong></legend>
-				  <label for="pplays" id="homeT">Total Plays:</label><br>
+				  <label for="pplays" id="totPP">Total Plays:</label><br>
 				  
-				  <label for="pcompletions" id="seaS">Completion %:</label><br>
+				  <label for="pcompletions" id="comp">Completion %:</label><br>
 				  
-				  <label for="pint" id="stateG">Interceptions:</label><br>
+				  <label for="pint" id="inter">Interceptions:</label><br>
 				  
-				  <label for="psack" id="typE">Sacks:</label><br>
+				  <label for="psack" id="sack">Sacks:</label><br>
 				  
-				  <label for="paverageYards" id="weeK">Average Yards:</label><br>
+				  <label for="paverageYards" id="avgYP">Average Yards:</label><br>
 				  
-				  <label for="pnumbers">Numbers:</label><br>
-				  
-				  <label for="pconversions">Conversion %:</label>
+				  <label for="pconversions" id="convP">Conversion %:</label><br>
 				  
 			</fieldset>
 			<br>
-			
 			<!--
 			The table to display the ranking and average EPA results
 			-->
@@ -235,24 +239,20 @@ The div to be able to place our contents with respect to the CSS code
 				</tr>
 				<tr>
 					<td>Run</td>
-					<td></td>
+					<td id="avgrun"></td>
 				</tr>
 				
 				<tr>
 					<td>Pass</td>
-					<td></td>		   
-				</tr>		 
-		 
+					<td id="avgpass"></td>
+		   
+				</tr>	 
 			</table>
-			
-							
 		</div>
-			</br></br>
-		</br>
-		</br>
-
-	</div>
 	
+		</br></br></br></br>
+		
+	</div>
 	<!--jquery needed so we can append to list instead of just one line-->
 	<script src = "https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="app.js"></script>
