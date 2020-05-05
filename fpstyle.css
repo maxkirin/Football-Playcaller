@@ -1,9 +1,11 @@
 /*
 Authors: Max Kirin, Diego Rojo, Keila Cressman & Grace Imanariyo
 fpstyle.css
+
 This creates the style we want to implement on our webpage frontpage 
 and our help page as well
 */ 
+
 
 
 /*
@@ -34,13 +36,13 @@ Setting the title in the wrapper div to be alligned in the center*/
 		text-align:center;
 }
 
+
 /*formatting all legends and selct options on our forms*/
 legend
 {
 	text-align:center;
 	margin-left:50%;
 	margin-right:50%;
-
 }
 
 select
@@ -101,7 +103,6 @@ label
 /*all input fields are centered*/
 input{
 	position:auto;
-
 }
 
 /*This is where the main contents and the wrapper div will be placed*/
@@ -169,7 +170,6 @@ displayed below*/
 	width:100%;
 	height:100vh;
 	opacity:0.3;
-
 }
 
 /*The characteristics of the div in which data will be entered*/
@@ -187,6 +187,7 @@ displayed below*/
 	padding:10px;
 
 }
+
 
 /*The characteristics of the div in which data will be displayed*/
 .container2

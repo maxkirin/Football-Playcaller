@@ -127,7 +127,6 @@ takes an array of play objects
 performs calculations in order to be displayed to the user
 */
 function ShowData(data){
-	
 	//counters for run play box
 	var runplays = 0;
 	var rungain = 0;
@@ -143,7 +142,7 @@ function ShowData(data){
 	var passattempt = 0;
 	var passconv = 0;
 	var passepa = 0;
-	
+
 	//loop throguh filtered array
 	for (var i = 0; i < data.length; i++){
 		if (data[i].play_type == "Run")
@@ -241,6 +240,7 @@ function ShowData(data){
 	
 }	
 
+
 /*searching for yrdline100
 possible values are
 fp = 1 -> 0 - 10
@@ -250,7 +250,6 @@ fp = 1 -> 0 - 10
 5 -> 75 - 90
 6 -> 90 - 97
 7 -> 97 - 100*/
-
 function searchByFieldPosition(fp, arr){
 	var begin;
 	var end;
@@ -294,6 +293,7 @@ function searchByFieldPosition(fp, arr){
 	return arr;
 }	
 
+
 /*searching for ScoreDiff
 using combination of scoreDiff type and num from form
 tied = 0
@@ -307,7 +307,6 @@ for winning and losing, add on scoreDiff num range from form
  5 - 14-16
  6 - 17-20
  7 - 21 and up*/
-
 function searchByScoreDiff(type, num, arr){
 	//if tied, look for scoreDiff == 0
 	if (type == "tied"){
@@ -478,4 +477,6 @@ function searchByTimeouts(timeouts, arr){
 		}
 	}
 	return arr;
+
 }
+
