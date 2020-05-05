@@ -1,0 +1,143 @@
+
+<!--
+fpstyle.css
+This is the help page of a website designed by Diego Rojo, Max Kirin,
+Grace Imanariyo & Keila Cressman.
+This page is an FAQs page here to assist a user to 
+better navigate our website. 
+-->
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+	<!--
+	This is the description of the page. We connect our css file
+	for the better responsiveness of our webpage
+	-->
+	<head>
+		<!--Same code to keep consistency-->
+		<title>Help</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="FootBall Play Caller" />
+		<link rel="stylesheet" type="text/css" href="fpstyle.css">
+		<link rel="icon" href="ball.jpg" >
+		<link href="https://fonts.googleapis.com/css?family=cookie" rel="stylesheet">
+	</head>
+	<body>
+	
+	<!--
+	The div to be able to place our contents with respect to the CSS code
+	-->
+	<div class = "section">
+		<h1> FootBall Play Calling Guide</h1>
+		
+		<!--
+	This is a the beginning of the webpage with a video and a title
+	-->
+		<div class="video-container">
+			<div class="color-overlay"></div>
+			<video autoplay loop muted>
+				<source src="ShortFieldVideo.mp4" type = "video/mp4">
+			</video>
+		</div>
+	</div>
+		
+		<!--
+	This is big container where the contents of the help FAQs will be displayed
+	-->
+		<div class="wrapper1">
+					
+			<h1> FAQs </h1>
+					<br/>
+			
+			
+			<!--
+			This is left container where the contents of the help FAQs will be displayed
+			-->
+			<div class="container3" >
+			
+			<!--List of some FAQs, with links to point users in the right direction-->
+			<ol>
+				<li>
+					<h2> How do I add new data to test? </h2>
+
+					<p> You need to click <a href="enterScores.html" color="white"> here</a> 
+					and fill all fields so that you can see the results predicted or contact Admin.
+					 </p>
+				</li>
+
+				<li>
+					<h2> Can I see past results? </h2>
+
+					<p> Only while in session. Once logged out the results are deleted. Results 
+					<strong> CAN NOT </strong>be saved.</p>
+				</li>
+				
+				<li>
+					<h2>How is the play modified? </h2>
+
+					<p> The play is modified by changing input that was selected.</p>
+				</li>
+				
+				<li>
+					<h2>How are the plays coded?</h2>
+
+					<p> The plays are coded using RStudio.</p>
+				</li>
+	
+				</ol>
+				</div>
+			
+				<!--
+			This is right container where the contents of the help FAQs will be displayed
+			-->
+				<div class="container4">
+				<ol start="5"> 
+				<li>
+					<h2>How is the choice sent onto the field?</h2>
+
+					<p> The coach or the person in charge of the site will input the data they have access to and it will filter through the database to retrieve the best outcome.
+					</p>
+				</li>
+				
+				<li>
+					<h2>Who decides which play to run? </h2>
+
+					<p>The coach or the person in charge of maintaining the play decides which play to run. </p>
+				</li>
+			
+				<li>
+					<h2>Is my data Secure?</h2>
+
+					<p>Not as of yet</p>
+				</li>
+
+<li>
+					<h2>What does my data display?</h2>
+
+					<p>Depending on your selection it will return the factors used to calculate the 
+						average of Runs and Passes.</p>
+					</br>
+					</br>
+					
+				<!--
+				This is a section where the user can go back to the Home page to enter data
+			-->
+			</li>
+			</ol>
+			<div class="hitsubmit"> 
+			<form method="POST" action="enterScores.html">
+			
+			<input type="submit" name="home" id="home" value="Return to Home" class="center">
+			</div>		
+			</form>
+			<br>			
+			<br>
+			
+	</div>
+								
+	</body>
+</html>
