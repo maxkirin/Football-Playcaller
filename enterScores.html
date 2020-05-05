@@ -1,4 +1,4 @@
-<!--
+  <!--
 This is a website designed by Diego Rojo, Max Kirin,
 Grace Imanariyo & Keila Cressman.
 This page is the front page that the user looks at to enter
@@ -15,8 +15,9 @@ The html title
 <head>
     <title>Football Play Calling</title>
     <meta charset="utf-8" />
-    <meta name="description" content="CTE" />
+    <meta name="description" content="Football Play Caller" />
 	<link rel="stylesheet" type="text/css" href="fpstyle.css">
+	<link rel="icon" href="ball.jpg" >
 	<!--
 	This is a section when we connect our web to our database (Firebase)
 	-->
@@ -31,9 +32,9 @@ The div to be able to place our contents with respect to the CSS code
 <body>
 	
 	<div class = "section">
-			<!--
-			This is a the beginning of the webpage with a video and a title
-			-->
+	<!--
+	This is a the beginning of the webpage with a video and a title
+	-->
 			<h3> Football Play Calling</h3>
 			
 			<div class="video-container">
@@ -47,29 +48,31 @@ The div to be able to place our contents with respect to the CSS code
 	<!--
 	This is big container where the contents of the search and the contents
 	of the results will be displayed separately
-	-->
+	-->	
 	<div class='wrapper1'>
+	
+	
 	  <h1>~~Play and Score Simulation~~</h1>
 	  
 	  <br>
-	    <!--
+		<!--
 		This is a container where the contents of the search and submit option is.
 		The user will enter data as necessary in the respective fields.
 		This includes the fieldPosition, the scoredifferential, down distance, 
 		quarter number, time Remaining, timeOuts. Once you hit Submit, the results will appear
 		in another div.
 		-->
+		
 		<div class="container1">
-			<form id="situations" action="/action_page.php" method="post">	
+			<form id="situations" method="post">	
 				
-				<!--This is the Help Section that will help the user with FAQs-->
 				<p id='playinfo'> ***Fill in as many or as little fields as you want***
+				<!--This is the Help Section that will help the user with FAQs-->
 				<a href="help.html">
 						<img src="faq.png" alt = "FAQ" style="float:right;width:40px;height:40px">
 					</a></p>
-				<p id="playinfo">The results will take a few seconds to load</p>
-				
 				<!--user can choose the field position range they want to analyze-->
+				
 				<label for="fieldPosition"><strong>Field Position: </strong></label>
 				<select name="fieldPosition" id="fieldPosition" >
 					<option value="na" selected>N/A</option>
@@ -83,10 +86,10 @@ The div to be able to place our contents with respect to the CSS code
 				</select>				
 				<br/>
 				<br/>
-				
 				<!--
 				This is a section where the user will be able to enter the score differentialthe
 				to indicate whether the team is winning, losing or if the game is tied.-->
+				
 				<label for="scoreDiff"><strong>Score Differential: </strong></label>
 				<select name="scoreDiff" id="scoreDiff" >
 					<option value="na" selected>N/A</option>
@@ -94,10 +97,10 @@ The div to be able to place our contents with respect to the CSS code
 					<option value="winning">Winning</option>
 					<option value="losing">Losing</option>
 				</select>
-				
 				<!--
 				This is a section where the user will be able to enter the difference in scoreDiff
 				The user will be able to fill this section only when the game is not tied-->
+				
 				<label for="scoreDiffNum"><strong>By: </strong></label>
 				<select name="scoreDiffNum" id="scoreDiffNum" disabled>
 					<option value="na" selected></option>
@@ -112,6 +115,7 @@ The div to be able to place our contents with respect to the CSS code
 				<br><br>		
 				
 				<!--user can choose a certain down they want to analyze-->
+				
 				<label for="down"><strong>Down: </strong></label>
 				<select name="down" id="down" >
 					<option value="na" selected>N/A</option>
@@ -123,6 +127,7 @@ The div to be able to place our contents with respect to the CSS code
 				<br><br>
 				
 				<!--user can select a certain yards to go range to analyze-->
+				
 				<label for="Distance"><strong> Distance: </strong></label>
 				<select name="Distance" id="distance" >
 					<option value="na" selected>N/A</option>
@@ -132,8 +137,9 @@ The div to be able to place our contents with respect to the CSS code
 					<option value="extra_long"> Extra Long (11+)</option>
 				</select>
 				<br><br>
-					
-				<!--user can choose the quarter they want to analyze-->
+				
+				<!--user can choose the quarter they want to analyze-->	
+				
 				<label for="quarterNumber"><strong>Quarter Number: </strong></label>
 				<select name="quarterNumber" id="quarterNumber" >
 					<option value="na" selected>N/A</option>
@@ -146,16 +152,18 @@ The div to be able to place our contents with respect to the CSS code
 				<br/>
 				
 				<!--user can designate the time remaining they want to anlyze-->
+				
 				<label for="timeRemaining"><strong> Time Remaining: </strong></label>
 				<select name="timeRemaining" id="timeRemaining" >
 					<option value="na" selected>N/A</option>
-					<option value="4">Fianl 4 minutes of qtr</option>
+					<option value="4">Final 4 minutes of qtr</option>
 					<option value="2">Final 2 minutes of qtr</option>
 				</select>	
 				<br/>
 				<br/>
 				
 				<!--user can select the number of timeouts remaining to analyze-->
+				
 				<label for="timeouts"><strong>Time Outs: </strong></label>
 				<select name="timeouts" id="timeouts" >
 					<option value="na" checked="checked">N/A</option>
@@ -167,8 +175,10 @@ The div to be able to place our contents with respect to the CSS code
 				<br/></br>
 				
 				<!--triggers the javascript function to filter the data by the user input-->
+				
 				<div class="hitsubmit">
 					<input type="submit" name="confirm" id="confirm" value="Loading Play by Play Data..." disabled/>
+					
 					<br>
 				</div>
 				</br>
@@ -180,6 +190,8 @@ The div to be able to place our contents with respect to the CSS code
 		This is a container that will display the results depending on the search as soon 
 		as the submit button of container1 is pressed. These fields will be filled
 		with information from the database-->
+	
+		
 		<div id="container2" class="container2">
 			<!--
 			This is a section to display the results related to the Run call
@@ -234,19 +246,12 @@ The div to be able to place our contents with respect to the CSS code
 					<td>Pass</td>
 					<td id="avgpass"></td>
 		   
-				</tr>
-		 
-		 
+				</tr>	 
 			</table>
-			
 		</div>
-		
 	
 		</br></br></br></br>
-		</br>
-		</br></br>
-		</br>
-		</br>
+		
 	</div>
 	<!--jquery needed so we can append to list instead of just one line-->
 	<script src = "https://code.jquery.com/jquery-3.1.0.js"></script>

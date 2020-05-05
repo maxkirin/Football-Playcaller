@@ -1,3 +1,8 @@
+/*This is a javascript file for the Football Playcaller Simulation
+designed by Max Kirin, Keila Cressman, Diego Rojo & Grace Imanariyo. 
+This file helps in the functionality of our website 
+as it ommunicates with our enterScores.html file*/
+
 //Key which allows access to the various functions of Firebase without needing user account and authentication
 var config = {
 	"apiKey": "AIzaSyAGyoxhLyCEyJo1Km37xvwKyAyQiR00Z_g",
@@ -122,7 +127,6 @@ takes an array of play objects
 performs calculations in order to be displayed to the user
 */
 function ShowData(data){
-	
 	//counters for run play box
 	var runplays = 0;
 	var rungain = 0;
@@ -138,7 +142,7 @@ function ShowData(data){
 	var passattempt = 0;
 	var passconv = 0;
 	var passepa = 0;
-	
+
 	//loop throguh filtered array
 	for (var i = 0; i < data.length; i++){
 		if (data[i].play_type == "Run")
@@ -236,15 +240,16 @@ function ShowData(data){
 	
 }	
 
-//searching for yrdline100
-//possible values are
-//fp = 1 -> 0 - 10
-//2 -> 10 - 25
-//3 -> 25 - 50
-//4 -> 50 - 75
-//5 -> 75 - 90
-//6 -> 90 - 97
-//7 -> 97 - 100
+
+/*searching for yrdline100
+possible values are
+fp = 1 -> 0 - 10
+2 -> 10 - 25
+3 -> 25 - 50
+4 -> 50 - 75
+5 -> 75 - 90
+6 -> 90 - 97
+7 -> 97 - 100*/
 function searchByFieldPosition(fp, arr){
 	var begin;
 	var end;
@@ -288,19 +293,20 @@ function searchByFieldPosition(fp, arr){
 	return arr;
 }	
 
-//searching for ScoreDiff
-//using combination of scoreDiff type and num from form
-//tied = 0
-//winning = +
-//losing = -
-//for winning and losing, add on scoreDiff num range from form
-// 1 - 1-3
-// 2 - 4-6 
-// 3 - 7-8
-// 4 - 9-13
-// 5 - 14-16
-// 6 - 17-20
-// 7 - 21 and up
+
+/*searching for ScoreDiff
+using combination of scoreDiff type and num from form
+tied = 0
+winning = +
+losing = -
+for winning and losing, add on scoreDiff num range from form
+ 1 - 1-3
+ 2 - 4-6 
+ 3 - 7-8
+ 4 - 9-13
+ 5 - 14-16
+ 6 - 17-20
+ 7 - 21 and up*/
 function searchByScoreDiff(type, num, arr){
 	//if tied, look for scoreDiff == 0
 	if (type == "tied"){
@@ -471,4 +477,6 @@ function searchByTimeouts(timeouts, arr){
 		}
 	}
 	return arr;
+
 }
+
