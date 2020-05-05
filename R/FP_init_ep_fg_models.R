@@ -11,11 +11,17 @@ library(tidyverse)
 library(nflWAR)
 library(nflscrapR)
 
-# Load data from 2009 to 2016 from the nflscrapR-data repository using the
+# Load data from 200 to 2016 from the nflscrapR-data repository using the
 # get_pbp_data() function from the nflWAR package:
-pbp_data <- get_pbp_data(2014:2017)
 #pbp_data <- read.csv("data/FP_pbp_data.csv")
+pbp_data <- get_pbp_data(2009:2017)
 
+
+#only take the columns that we need
+#pbp_data <- select(pbp_data, c("Date", "GameID", "play_id", "Drive", "qtr", "down", "TimeSecs",
+#                               "yrdline100", "ydstogo", "GoalToGo", "posteam", "sp", "Touchdown",
+#                               "ExPointResult", "TwoPointConv", "DefTwoPoint", "Safety", "PlayType",
+#                               "ReturnResult", "FieldGoalResult", "ScoreDiff", "AbsScoreDiff", "posteam_timeouts_pre", "Season"))
 
 
 #added
@@ -243,22 +249,24 @@ pbp_ep_model_data <- pbp_ep_model_data %>%
          #added
          #create a season and month variable to distinguish between new OT rules
          #used in TimeSecs_remaining calc
-         Season = as.numeric(substr(as.character(GameID),1,4)),
-         Month = as.numeric(substr(as.character(GameID),5,6)),
+         #Season = as.numeric(substr(as.character(GameID),1,4)),
+         #Month = as.numeric(substr(as.character(GameID),5,6)),
 
          # Create a variable that is time remaining until end of half:
          # (only working with up to 2016 data so can ignore 2017 time change)
+         #2017 time change accounted for in data
+         #must check for 2018 season how it is saved
          TimeSecs_Remaining = as.numeric(ifelse(qtr %in% c(1,2), TimeSecs - 1800,
-                                                ifelse(qtr == 5 & (Season < 2017 | (Season == 2017 & Month <= 4)), TimeSecs + 900,
-                                                       ifelse(qtr == 5 & (Season > 2017 | (Season == 2017 & Month > 4)), TimeSecs + 600,
-                                                       TimeSecs)))),
+                                                ifelse(qtr == 5, TimeSecs + 900,
+                                                       TimeSecs))),
 
          # log transform of yards to go and indicator for two minute warning:
          log_ydstogo = log(ydstogo),
          Under_TwoMinute_Warning = ifelse(TimeSecs_Remaining < 120, 1, 0),
 
-         # Changing down into a factor variable:
+         # Changing down, timeouts into a factor variable:
          down = factor(down),
+         posteam_timeouts_pre = factor(posteam_timeouts_pre),
 
          # Calculate the drive difference between the next score drive and the
          # current play drive:
@@ -278,18 +286,19 @@ pbp_ep_model_data <- pbp_ep_model_data %>%
 # Save dataset in data folder as pbp_ep_model_data.csv
 # (NOTE: this dataset is not pushed due to its size exceeding
 # the github limit but will be referenced in other files)
-write_csv(pbp_ep_model_data, "data/FP_pbp_ep_model_data_4_szn.csv")
+write_csv(pbp_ep_model_data, "data/FP_ep_model_data_09_17.csv")
 
 # Fit the expected points model:
 # install.packages("nnet")
-ep_model <- nnet::multinom(Next_Score_Half ~ TimeSecs_Remaining + yrdline100 +
+ep_model_adj <- nnet::multinom(Next_Score_Half ~ TimeSecs_Remaining + yrdline100 +
                              down + log_ydstogo + GoalToGo + log_ydstogo*down +
                              yrdline100*down + GoalToGo*log_ydstogo +
-                             Under_TwoMinute_Warning, data = pbp_ep_model_data,
+                             Under_TwoMinute_Warning + AbsScoreDiff*TimeSecs_Remaining +
+                             ScoreDiff*TimeSecs_Remaining, data = pbp_ep_model_data,
                            weights = Total_W_Scaled, maxit = 300)
 
 # Save the model (commented out due to file size limit)
-save(ep_model, file="FP_ep_model_4_szn.RData")
+save(ep_model_adj, file="FP_ep_model_final.RData")
 
 # ----------------------------------------------------------------------------
 
@@ -304,16 +313,15 @@ nrow(fg_model_data)
 # Save dataset in data folder as fg_model_data.csv
 # (NOTE: this dataset is not pushed due to its size exceeding
 # the github limit but will be referenced in other files)
-write_csv(fg_model_data, "data/FP_fg_model_data_4_szn.csv")
+write_csv(fg_model_data, "data/FP_fg_model_data_09_17.csv")
 
 # Fit the field goal model
 # install.packages("mgcv")
-fg_model <- mgcv::bam(sp ~ s(yrdline100),
+fg_model_adj <- mgcv::bam(sp ~ s(yrdline100),
                       data = fg_model_data, family = "binomial")
 
 # Save the model (commented out due to file size limit)
-save(fg_model, file="FP_fg_model_4_szn.RData")
-
+save(fg_model_adj, file="FP_fg_model_final.RData")
 
 
 

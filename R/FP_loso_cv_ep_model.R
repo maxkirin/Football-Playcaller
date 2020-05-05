@@ -12,7 +12,7 @@ library(nnet)
 # (NOTE this file was not pushed since due to the GitHub file size limit)
 # (For some reason read_csv fails to read in the TimeSecs_Remaining values
 # for 138 plays so we use read.csv instead)
-pbp_ep_model_data <- read.csv("data/FP_pbp_ep_model_data_4_szn_short.csv") %>%
+pbp_ep_model_data <- read.csv("data/FP_ep_model_data_14_17.csv") %>%
   mutate(down = factor(down), posteam_timeouts_pre = factor(posteam_timeouts_pre))
 
 #' Function to compute leave-one-season-out cross validation predictions
@@ -131,15 +131,14 @@ ep_model_loso_preds <- calc_ep_multinom_loso_cv(as.formula("Next_Score_Half ~
                                                            yrdline100*down +
                                                            GoalToGo*log_ydstogo +
                                                            Under_TwoMinute_Warning +
-                                                           ScoreDiff*TimeSecs_Remaining + AbsScoreDiff*TimeSecs_Remaining +
-                                                           posteam_timeouts_pre"),
+                                                           posteam_timeouts_pre*TimeSecs_Remaining"),
                                                 ep_model_data = pbp_ep_model_data,
                                                 weight_type = 2)
 
 # Save dataset in data folder as ep_model_loso_preds.csv
 # (NOTE: this dataset is not pushed due to its size exceeding
 # the github limit but will be referenced in other files)
-write_csv(ep_model_loso_preds, "data/FP_ep_model_loso_preds_4_szn_short.csv")
+write_csv(ep_model_loso_preds, "data/FP_ep_model_loso_preds_14_17.csv")
 
 
 # Use the following pipeline to create a dataset used for charting the
@@ -413,8 +412,7 @@ ep_fg_model_loso_preds <- calc_ep_multinom_fg_loso_cv(as.formula("Next_Score_Hal
                                                            yrdline100*down +
                                                            GoalToGo*log_ydstogo +
                                                            Under_TwoMinute_Warning +
-                                                           ScoreDiff*TimeSecs_Remaining + AbsScoreDiff*TimeSecs_Remaining +
-                                                           posteam_timeouts_pre"),
+                                                           posteam_timeouts_pre*TimeSecs_Remaining"),
                                                       as.formula("sp ~ s(yrdline100)"),
                                                       ep_model_data = pbp_ep_model_data,
                                                       weight_type = 2)
